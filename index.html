@@ -386,14 +386,8 @@
       .video-wrap {
         height: 70vh; top: 35%; max-height: none; aspect-ratio: auto; width: 140vw;
         z-index: 5;
-        -webkit-mask-image:
-          linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%),
-          linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-        mask-image:
-          linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%),
-          linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-        -webkit-mask-composite: destination-in;
-        mask-composite: intersect;
+        -webkit-mask-image: radial-gradient(ellipse 60% 38% at 50% 50%, black 50%, transparent 85%);
+        mask-image: radial-gradient(ellipse 60% 38% at 50% 50%, black 50%, transparent 85%);
       }
       .identity img { height: 36px; }
       .identity { padding: 14px 24px; }
