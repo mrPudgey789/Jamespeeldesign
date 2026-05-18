@@ -502,7 +502,7 @@
 
   <!-- Video (fixed centre, independent of text) -->
   <div class="video-wrap">
-    <video id="vid-idle" src="idle2.mp4" autoplay muted loop playsinline class="active"></video>
+    <video id="vid-idle" src="idle2.mp4" autoplay muted loop playsinline preload="auto" webkit-playsinline class="active"></video>
     <video id="vid-left" src="James%20look%20left%202.mp4" muted playsinline></video>
     <video id="vid-right" src="James%20look%20right%202.mp4" muted playsinline></video>
     <video id="vid-up" src="James%20look%20up%202.mp4" muted playsinline></video>
@@ -790,6 +790,14 @@
       up:    document.getElementById('vid-up'),
       wave:  document.getElementById('vid-wave'),
     };
+
+    // Force autoplay on mobile (iOS fallback)
+    var idleVid = videos.idle;
+    idleVid.play().catch(function() {});
+    document.addEventListener('touchstart', function forcePlay() {
+      idleVid.play().catch(function() {});
+      document.removeEventListener('touchstart', forcePlay);
+    }, { once: true });
 
     let currentVid = 'idle';
     let vidPlaying = false;
