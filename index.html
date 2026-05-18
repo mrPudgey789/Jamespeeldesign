@@ -147,6 +147,28 @@
     .video-wrap video::-webkit-media-controls-start-playback-button { display: none !important; }
     .video-wrap video::-webkit-media-controls-panel { display: none !important; }
 
+    .preloader {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      cursor: pointer;
+    }
+    .preloader.visible { display: flex; }
+    .preloader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(27,42,74,0.15);
+      border-top-color: var(--ink);
+      border-radius: 50%;
+      animation: spin 800ms linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     /* --- Typewriter hero statement --- */
     .hero-statement {
       position: fixed;
@@ -510,6 +532,9 @@
     <video id="vid-right" src="James%20look%20right%202.mp4" muted playsinline></video>
     <video id="vid-up" src="James%20look%20up%202.mp4" muted playsinline></video>
     <video id="vid-wave" src="wave.mp4" muted playsinline></video>
+    <div class="preloader" id="preloader">
+      <div class="preloader-spinner"></div>
+    </div>
   </div>
 
   <!-- Typewriter text (fixed bottom) -->
@@ -795,19 +820,26 @@
     };
 
     // Force autoplay on mobile (iOS fallback)
-    // iOS Low Power Mode blocks autoplay entirely — detect and force play on first tap
+    // iOS Low Power Mode blocks autoplay — show fake preloader as tap-to-play
     var idleVid = videos.idle;
+    var preloader = document.getElementById('preloader');
     var playPromise = idleVid.play();
     if (playPromise !== undefined) {
-      playPromise.catch(function() {
-        // Autoplay blocked (likely Low Power Mode) — play on first interaction
+      playPromise.then(function() {
+        // Autoplay worked, hide preloader if visible
+        preloader.classList.remove('visible');
+      }).catch(function() {
+        // Autoplay blocked — show preloader spinner as disguised tap-to-play
+        preloader.classList.add('visible');
         function forcePlay() {
-          idleVid.play();
+          idleVid.play().then(function() {
+            preloader.classList.remove('visible');
+          });
           document.removeEventListener('touchstart', forcePlay);
           document.removeEventListener('click', forcePlay);
         }
-        document.addEventListener('touchstart', forcePlay, { once: true });
-        document.addEventListener('click', forcePlay, { once: true });
+        document.addEventListener('touchstart', forcePlay);
+        document.addEventListener('click', forcePlay);
       });
     }
 
