@@ -47,13 +47,16 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      background: var(--bg);
+      width: 100%;
+    }
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
       max-width: 1200px;
       margin: 0 auto;
       padding: 32px 48px;
-      background: var(--bg);
     }
     .nav-logo img {
       height: 48px;
@@ -265,7 +268,7 @@
 
     /* --- Responsive --- */
     @media (max-width: 768px) {
-      nav { padding: 14px 24px; }
+      .nav-inner { padding: 14px 24px; }
       .nav-links {
         display: none;
         position: fixed;
@@ -329,17 +332,19 @@
 
   <!-- Nav -->
   <nav>
-    <a href="index.html" class="nav-logo">
-      <img src="James%20logo%202%20black.svg" alt="James Peel">
-    </a>
-    <div class="nav-links" id="navLinks">
-      <a href="work.html" class="active">Work</a>
-      <a href="experiments.html">Experiments</a>
-      <a href="about.html">About</a>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="James%20logo%202%20black.svg" alt="James Peel">
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="work.html" class="active">Work</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="about.html">About</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <button class="burger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
   </nav>
 
   <!-- Hero -->

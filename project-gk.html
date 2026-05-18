@@ -49,12 +49,16 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      background: var(--bg);
+      width: 100%;
+    }
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 32px 36px;
-      background: var(--bg);
-      border-bottom: 1px solid rgba(18,24,40,0.08);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 48px;
     }
     .nav-logo img {
       height: 48px;
@@ -75,6 +79,7 @@
     }
     .nav-links a:hover,
     .nav-links a.active { color: var(--ink); }
+    .burger { display: none; }
 
     /* --- Project Hero --- */
     .project-hero {
@@ -436,10 +441,42 @@
 
     /* --- Responsive --- */
     @media (max-width: 768px) {
-      nav { padding: 14px 18px; }
-      .nav-links { gap: 20px; }
-      .nav-links a { font-size: 0.9rem; }
+      .nav-inner { padding: 14px 24px; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        z-index: 200;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.4rem; }
       .nav-logo img { height: 36px; }
+      .burger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 300;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+      .burger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition: transform 200ms ease, opacity 200ms ease;
+      }
+      .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .burger.open span:nth-child(2) { opacity: 0; }
+      .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
       .project-hero { padding: 48px 24px 60px; }
       .project-hero h1 { font-size: 1.8rem; }
@@ -488,13 +525,18 @@
 
   <!-- Nav -->
   <nav>
-    <a href="index.html" class="nav-logo">
-      <img src="James%20logo%202%20black.svg" alt="James Peel">
-    </a>
-    <div class="nav-links">
-      <a href="work.html" class="active">Work</a>
-      <a href="experiments.html">Experiments</a>
-      <a href="about.html">About</a>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="James%20logo%202%20black.svg" alt="James Peel">
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="work.html" class="active">Work</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="about.html">About</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -663,6 +705,17 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.getElementById('burger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.getElementById('burger').classList.remove('open');
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
   </script>
 
 </body>
