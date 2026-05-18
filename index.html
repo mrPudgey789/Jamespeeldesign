@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James Peel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Cooper Lt BT';
+      src: url('cooper-lt-bt/CooperLtBTLight.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cooper Lt BT';
+      src: url('cooper-lt-bt/CooperBoldBT.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #66A9EF;
+      --ink: #1B2A4A;
+      --ink-muted: rgba(27,42,74,0.5);
+      --accent: #ffffff;
+      --highlight: #60A1E6;
+    }
+
+    a, .nav-label, [data-zone] {
+      cursor: pointer;
+    }
+
+    /* --- Body --- */
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+    }
+
+    /* Radial glow behind illustration */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 35%;
+      left: 50%;
+      width: 60vw;
+      height: 60vw;
+      max-width: 700px;
+      max-height: 700px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Grain overlay */
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* --- Logo top-left --- */
+    .identity {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1200px;
+      padding: 32px 48px;
+      z-index: 50;
+      pointer-events: none;
+      user-select: none;
+    }
+    .identity img {
+      height: 48px;
+      width: auto;
+      filter: brightness(0);
+      opacity: 1;
+      margin-top: 0.1rem;
+    }
+
+    .resume-btn {
+      position: fixed;
+      top: 0; right: 0;
+      padding: 32px 36px;
+      z-index: 50;
+    }
+    .resume-btn a {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--ink);
+      text-decoration: none;
+      transition: opacity 200ms ease;
+    }
+    .resume-btn a:hover {
+      opacity: 0.6;
+    }
+
+    /* --- Video (fixed centre) --- */
+    .video-wrap {
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 100vh;
+      max-height: 1000px;
+      aspect-ratio: 1 / 1;
+      z-index: 1;
+      overflow: hidden;
+      cursor: pointer;
+      -webkit-mask-image: radial-gradient(ellipse 48% 39% at center 57%, black 83%, transparent 100%);
+      mask-image: radial-gradient(ellipse 48% 39% at center 57%, black 83%, transparent 100%);
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.85);
+      animation: illusIn 700ms ease-out 200ms forwards;
+    }
+
+    .video-wrap video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 250ms ease;
+    }
+    .video-wrap video.active { opacity: 1; }
+
+    /* --- Typewriter hero statement --- */
+    .hero-statement {
+      position: fixed;
+      top: 72%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      pointer-events: none;
+      min-height: 80px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: center;
+      max-width: 900px;
+      width: 90vw;
+    }
+    .hero-statement .typer {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .hero-statement .typer .cursor-blink {
+      display: inline;
+      width: 0;
+      overflow: visible;
+      margin-left: 1px;
+      animation: blink 600ms step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* --- Handwritten hints --- */
+    .hover-hint {
+      position: fixed;
+      z-index: 11;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0;
+      transition: opacity 500ms ease;
+    }
+    .hover-hint .hint-text {
+      font-family: 'Caveat', cursive;
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: var(--ink-muted);
+      display: block;
+      white-space: nowrap;
+    }
+    .hover-hint .hint-arrow svg {
+      stroke: var(--ink-muted);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Left hint - points down-left to Work */
+    .hint--left {
+      left: calc(12% + 70px);
+      top: calc(50% - 130px);
+      animation: hintIn 600ms ease-out 1600ms forwards;
+    }
+    .hint--left .hint-text {
+      transform: rotate(-3deg);
+    }
+    .hint--left .hint-arrow {
+      display: block;
+      margin-top: 4px;
+      margin-left: 5px;
+    }
+    .hint--left .hint-arrow svg {
+      width: 55px;
+      height: 40px;
+    }
+
+    /* Right hint */
+    .hint--right {
+      right: calc(12% + 70px);
+      top: calc(50% - 130px);
+      text-align: right;
+      animation: hintIn 600ms ease-out 2000ms forwards;
+    }
+    .hint--right .hint-text {
+      transform: rotate(3deg);
+    }
+    .hint--right .hint-arrow {
+      display: block;
+      margin-top: 4px;
+      text-align: right;
+    }
+    .hint--right .hint-arrow svg {
+      width: 55px;
+      height: 40px;
+    }
+
+    @keyframes hintIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Nav labels --- */
+    .nav-label {
+      position: fixed;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform 300ms ease;
+    }
+    .nav-label .nav-title {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 500;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.01em;
+      transition: color 300ms ease;
+    }
+    .nav-label .nav-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-top: 0.2rem;
+      transition: color 300ms ease;
+    }
+    .nav-label .nav-line {
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+      gap: 0;
+    }
+    .nav-label .nav-line .line {
+      height: 1.5px;
+      width: 40px;
+      background: var(--ink);
+      transition: width 400ms ease, background 300ms ease;
+    }
+    .nav-label .nav-line .arrow {
+      font-size: 1rem;
+      color: var(--ink);
+      transition: color 300ms ease;
+      line-height: 1;
+    }
+    .nav-label:hover .nav-title { color: #ffffff; }
+    .nav-label:hover .nav-line .line { width: 70px; background: #ffffff; }
+    .nav-label:hover .nav-line .arrow { color: #ffffff; }
+
+    /* --- Left --- */
+    .nav-label--left {
+      left: 12%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      align-items: flex-end;
+      text-align: right;
+      opacity: 0;
+      animation: slideL 500ms ease-out 400ms forwards;
+    }
+    .nav-label--left:hover { transform: translate(-50%, -50%) translateX(-4px); }
+    .nav-label--left .nav-line { justify-content: flex-end; }
+    .nav-label--left .nav-line .arrow { margin-right: 6px; }
+
+    /* --- Right --- */
+    .nav-label--right {
+      left: 88%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      align-items: flex-start;
+      opacity: 0;
+      animation: slideR 500ms ease-out 400ms forwards;
+    }
+    .nav-label--right:hover { transform: translate(-50%, -50%) translateX(4px); }
+    .nav-label--right .nav-line .arrow { margin-left: 6px; }
+
+    /* --- Top --- */
+    .nav-label--top {
+      top: clamp(1rem, 3vh, 2.5rem);
+      left: 50%;
+      transform: translateX(-50%);
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      animation: slideT 500ms ease-out 400ms forwards;
+    }
+    .nav-label--top:hover { transform: translateX(-50%) translateY(-4px); }
+    .nav-label--top .nav-line { flex-direction: column; align-items: center; }
+    .nav-label--top .nav-line .line {
+      width: 1.5px;
+      height: 30px;
+      transition: height 400ms ease, background 300ms ease;
+    }
+    .nav-label--top:hover .nav-line .line { height: 50px; width: 1.5px; }
+    .nav-label--top .nav-line .arrow { margin-bottom: 4px; order: -1; }
+
+    /* --- Keyframes --- */
+    @keyframes illusIn {
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    @keyframes floatY {
+      0%   { transform: translate(-50%, -50%) scale(1) translateY(0); }
+      100% { transform: translate(-50%, -50%) scale(1) translateY(-8px); }
+    }
+    @keyframes slideL {
+      from { opacity: 0; transform: translate(-50%, -50%) translateX(-30px); }
+      to   { opacity: 1; transform: translate(-50%, -50%) translateX(0); }
+    }
+    @keyframes slideR {
+      from { opacity: 0; transform: translate(-50%, -50%) translateX(30px); }
+      to   { opacity: 1; transform: translate(-50%, -50%) translateX(0); }
+    }
+    @keyframes slideT {
+      from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 900px) {
+      .nav-label--left { left: 8%; transform: translate(0, -50%); }
+      .nav-label--left:hover { transform: translate(0, -50%) translateX(-4px); }
+      .nav-label--right { left: auto; right: 8%; transform: translate(0, -50%); }
+      .nav-label--right:hover { transform: translate(0, -50%) translateX(4px); }
+      .nav-label .nav-title { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+      .hero-statement .typer { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+      @keyframes slideL {
+        from { opacity: 0; transform: translate(0, -50%) translateX(-30px); }
+        to   { opacity: 1; transform: translate(0, -50%) translateX(0); }
+      }
+      @keyframes slideR {
+        from { opacity: 0; transform: translate(0, -50%) translateX(30px); }
+        to   { opacity: 1; transform: translate(0, -50%) translateX(0); }
+      }
+    }
+
+    @media (max-width: 600px) {
+      .video-wrap { height: 70vh; top: 35%; max-height: none; aspect-ratio: auto; width: 140vw; }
+      .identity img { height: 36px; }
+      .identity { padding: 14px 24px; }
+
+      .hero-statement {
+        bottom: auto;
+        top: 62%;
+        min-height: 60px;
+        width: 85vw;
+      }
+      .hero-statement .typer { font-size: 1.4rem; line-height: 1.3; }
+
+      /* Mobile bottom nav bar */
+      .nav-label--left,
+      .nav-label--right,
+      .nav-label--top {
+        position: fixed;
+        top: auto !important;
+        bottom: 0 !important;
+        transform: none !important;
+        animation: none;
+        opacity: 1;
+        align-items: center;
+        text-align: center;
+        padding: 18px 0;
+      }
+      .nav-label--left {
+        left: 0 !important;
+        right: auto;
+        width: 33.33%;
+        border-right: 1px solid var(--ink-muted);
+      }
+      .nav-label--top {
+        left: 33.33% !important;
+        width: 33.33%;
+      }
+      .nav-label--right {
+        left: auto !important;
+        right: 0 !important;
+        width: 33.33%;
+        border-left: 1px solid var(--ink-muted);
+      }
+      .nav-label--left:hover,
+      .nav-label--right:hover,
+      .nav-label--top:hover { transform: none !important; }
+
+      .nav-label .nav-title {
+        font-size: 1.05rem;
+      }
+      .nav-label .nav-sub { display: none; }
+      .nav-label .nav-line { display: none; }
+
+      .hover-hint { display: none; }
+
+      @keyframes slideL { from { opacity: 1; } to { opacity: 1; } }
+      @keyframes slideR { from { opacity: 1; } to { opacity: 1; } }
+      @keyframes slideT { from { opacity: 1; } to { opacity: 1; } }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Grain overlay -->
+  <div class="grain"></div>
+
+
+  <!-- Identity below video -->
+  <div class="identity">
+    <img src="James%20logo%202%20black.svg" alt="James Peel">
+  </div>
+
+  <!-- Handwritten hover hints -->
+  <div class="hover-hint hint--left" data-hint>
+    <span class="hint-text">the good stuff is here</span>
+    <span class="hint-arrow">
+      <svg viewBox="0 0 55 40">
+        <path d="M45,5 Q35,12 25,22 Q18,30 12,35" />
+        <path d="M18,30 L12,35 L19,34" />
+      </svg>
+    </span>
+  </div>
+
+
+
+  <!-- Nav labels -->
+  <a href="work.html" class="nav-label nav-label--left" data-zone="left">
+    <span class="nav-title">Work</span>
+    <span class="nav-sub">Xeneta &middot; Amazon &middot; IBM &middot; Cognizant</span>
+    <span class="nav-line">
+      <span class="arrow">&larr;</span>
+      <span class="line"></span>
+    </span>
+  </a>
+
+  <a href="experiments.html" class="nav-label nav-label--right" data-zone="right">
+    <span class="nav-title">Experiments</span>
+    <span class="nav-sub">Fun stuff on the side</span>
+    <span class="nav-line">
+      <span class="line"></span>
+      <span class="arrow">&rarr;</span>
+    </span>
+  </a>
+
+  <a href="about.html" class="nav-label nav-label--top" data-zone="up">
+    <span class="nav-title">About</span>
+    <span class="nav-sub">Learn about who I am</span>
+    <span class="nav-line">
+      <span class="arrow">&uarr;</span>
+      <span class="line"></span>
+    </span>
+  </a>
+
+  <!-- Video (fixed centre, independent of text) -->
+  <div class="video-wrap">
+    <video id="vid-idle" src="idle2.mp4" autoplay muted loop playsinline class="active"></video>
+    <video id="vid-left" src="James%20look%20left%202.mp4" muted playsinline></video>
+    <video id="vid-right" src="James%20look%20right%202.mp4" muted playsinline></video>
+    <video id="vid-up" src="James%20look%20up%202.mp4" muted playsinline></video>
+    <video id="vid-wave" src="wave.mp4" muted playsinline></video>
+  </div>
+
+  <!-- Typewriter text (fixed bottom) -->
+  <div class="hero-statement">
+    <div class="typer" id="typer"></div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.nav-label').forEach((el) => {});
+
+    /* --- Typewriter --- */
+    const typerEl = document.getElementById('typer');
+
+    const idleStatements = [
+      {
+        text: 'Logistics, fintech, healthcare, government. I\u2019ve shipped across them all.',
+        highlights: ['Logistics', 'fintech', 'healthcare', 'government']
+      },
+      {
+        text: 'Seven years in. Amazon, IBM, Cognizant, Xeneta. Every brief different, same craft.',
+        highlights: ['Amazon', 'IBM', 'Cognizant', 'Xeneta']
+      },
+      {
+        text: 'Lately I\u2019ve been deep in AI tooling, Claude, and what good design looks like when the interface thinks back.',
+        highlights: ['AI tooling', 'Claude']
+      },
+      {
+        text: 'Off the clock: long runs, strong coffee, and a cat who thinks she\u2019s helping.',
+        highlights: ['long runs', 'strong coffee', 'cat']
+      }
+    ];
+
+    const hoverStatements = {
+      left: {
+        text: 'At Amazon I led design on Umbrella, a tool that saved $250M. Now I\u2019m at Xeneta, redesigning how the world prices freight.',
+        highlights: ['Umbrella', '$250M', 'Xeneta']
+      },
+      right: {
+        text: 'Side experiments, half-built ideas, and things that didn\u2019t fit anywhere else.',
+        highlights: ['experiments', 'ideas']
+      },
+      up: {
+        text: 'Designer, runner, occasional cat wrangler. Based in sunny London.',
+        highlights: ['London']
+      }
+    };
+
+    let idleIndex = 0;
+
+    const TYPE_SPEED = 45;
+    const ERASE_SPEED = 14;
+    let currentStatement = null;
+    let targetStatement = null;
+    let typeTimer = null;
+    let isAnimating = false;
+    let idleCycleTimer = null;
+
+    // Build HTML string with highlight spans baked in, returning an array of
+    // "chunks" — each chunk is { html, plain } where html is the string to
+    // insert (may include span open/close tags) and plain is the visible char.
+    function buildChunks(statement) {
+      const { text, highlights } = statement;
+      const chunks = [];
+
+      // Find all highlight ranges
+      const ranges = [];
+      for (const hl of highlights) {
+        const idx = text.indexOf(hl);
+        if (idx !== -1) ranges.push({ start: idx, end: idx + hl.length });
+      }
+      ranges.sort((a, b) => a.start - b.start);
+
+      let inHighlight = false;
+      for (let i = 0; i < text.length; i++) {
+        const rangeStart = ranges.find(r => r.start === i);
+        const rangeEnd = ranges.find(r => r.end === i);
+
+        let prefix = '';
+        if (rangeEnd && inHighlight) {
+          prefix += '</span>';
+          inHighlight = false;
+        }
+        if (rangeStart && !inHighlight) {
+          prefix += '<span style="color:#ffffff">';
+          inHighlight = true;
+        }
+
+        chunks.push({ prefix, char: text[i] });
+      }
+      // Close any trailing span
+      if (inHighlight) {
+        chunks.push({ prefix: '</span>', char: '' });
+      }
+      return chunks;
+    }
+
+    function typeStatement(statement, onDone) {
+      const chunks = buildChunks(statement);
+      let i = 0;
+      let html = '';
+
+      // Add cursor
+      function render(h, showCursor) {
+        typerEl.innerHTML = h + (showCursor ? '<span class="cursor-blink">|</span>' : '');
+      }
+
+      render('', true);
+
+      typeTimer = setInterval(() => {
+        if (i >= chunks.length) {
+          clearInterval(typeTimer);
+          typeTimer = null;
+          // Remove cursor after a beat
+          setTimeout(() => render(html, false), 600);
+          if (onDone) onDone();
+          return;
+        }
+        const chunk = chunks[i];
+        html += chunk.prefix + chunk.char;
+        render(html, true);
+        i++;
+      }, TYPE_SPEED);
+    }
+
+    let eraseTimer = null;
+
+    function eraseStatement(onDone, instant) {
+      // Cancel any pending erase callback
+      if (eraseTimer) {
+        clearTimeout(eraseTimer);
+        eraseTimer = null;
+      }
+
+      const currentText = typerEl.textContent.replace('|', '');
+      let remaining = currentText.length;
+
+      if (remaining === 0) {
+        typerEl.style.transition = '';
+        typerEl.style.opacity = '1';
+        if (onDone) onDone();
+        return;
+      }
+
+      const duration = instant ? 120 : 250;
+      typerEl.style.transition = 'opacity ' + duration + 'ms ease';
+      typerEl.style.opacity = '0';
+      eraseTimer = setTimeout(() => {
+        eraseTimer = null;
+        typerEl.innerHTML = '';
+        typerEl.style.transition = '';
+        typerEl.style.opacity = '1';
+        if (onDone) onDone();
+      }, duration + 10);
+    }
+
+    function trimLastChar() {
+      // Remove the last visible character from the typer HTML
+      // Strategy: work backwards through innerHTML, skip tags, remove first real char found
+      let html = typerEl.innerHTML;
+      // Remove cursor blink span if present
+      html = html.replace(/<span class="cursor-blink">\|<\/span>$/, '');
+
+      let i = html.length - 1;
+      // Skip closing tags
+      while (i >= 0) {
+        if (html[i] === '>' ) {
+          // End of a tag — check if it's a closing span
+          const closeIdx = html.lastIndexOf('<', i);
+          const tag = html.substring(closeIdx, i + 1);
+          if (tag === '</span>') {
+            // Remove the closing tag, then remove the char before it, then check for opening tag
+            const beforeClose = html.substring(0, closeIdx);
+            // Find last real char in beforeClose
+            let j = beforeClose.length - 1;
+            if (j >= 0 && beforeClose[j] !== '>') {
+              // Remove that char
+              let newHtml = beforeClose.substring(0, j) + '</span>';
+              // Check if the span is now empty (opening tag right before closing)
+              newHtml = newHtml.replace(/<span style="color:#ffffff"><\/span>/, '');
+              typerEl.innerHTML = newHtml + '<span class="cursor-blink">|</span>';
+              return;
+            }
+            // Opening tag with nothing — remove both tags
+            const openIdx = beforeClose.lastIndexOf('<span style="color:#ffffff">');
+            if (openIdx !== -1) {
+              html = beforeClose.substring(0, openIdx);
+              typerEl.innerHTML = html + '<span class="cursor-blink">|</span>';
+              return;
+            }
+          }
+          // Other tag — skip
+          i = html.lastIndexOf('<', i) - 1;
+          continue;
+        }
+        // Real character — remove it
+        html = html.substring(0, i) + html.substring(i + 1);
+        // Clean empty spans
+        html = html.replace(/<span style="color:#ffffff"><\/span>/g, '');
+        typerEl.innerHTML = html + '<span class="cursor-blink">|</span>';
+        return;
+      }
+      // Nothing left
+      typerEl.innerHTML = '<span class="cursor-blink">|</span>';
+    }
+
+    function getStatement(zone) {
+      if (zone === 'idle') return idleStatements[idleIndex];
+      return hoverStatements[zone];
+    }
+
+    function switchStatement(zone) {
+      const statement = getStatement(zone);
+      if (statement === currentStatement && !isAnimating) return;
+      if (isAnimating && statement === targetStatement) return;
+
+      targetStatement = statement;
+
+      // Always interrupt: stop any running type/erase timer
+      if (typeTimer) {
+        clearInterval(typeTimer);
+        typeTimer = null;
+      }
+      if (eraseTimer) {
+        clearTimeout(eraseTimer);
+        eraseTimer = null;
+      }
+
+      isAnimating = true;
+
+      function doType() {
+        const toType = targetStatement;
+        currentStatement = toType;
+        typeStatement(toType, () => {
+          if (targetStatement !== toType) {
+            eraseStatement(() => doType(), true);
+          } else {
+            isAnimating = false;
+          }
+        });
+      }
+
+      // If mid-fade or empty, reset and type immediately
+      if (typerEl.textContent.replace('|', '').length === 0 || typerEl.style.opacity === '0') {
+        typerEl.innerHTML = '';
+        typerEl.style.transition = '';
+        typerEl.style.opacity = '1';
+        doType();
+      } else {
+        eraseStatement(() => doType(), true);
+      }
+    }
+
+    function startIdleCycle() {
+      stopIdleCycle();
+      idleCycleTimer = setInterval(() => {
+        if (currentZone !== 'idle') return;
+        idleIndex = (idleIndex + 1) % idleStatements.length;
+        currentStatement = null; // force re-trigger
+        switchStatement('idle');
+      }, 9000);
+    }
+
+    function stopIdleCycle() {
+      if (idleCycleTimer) {
+        clearInterval(idleCycleTimer);
+        idleCycleTimer = null;
+      }
+    }
+
+    let currentZone = 'idle';
+    setTimeout(() => {
+      switchStatement('idle');
+      startIdleCycle();
+    }, 600);
+
+    /* --- Video logic --- */
+    const videos = {
+      idle:  document.getElementById('vid-idle'),
+      left:  document.getElementById('vid-left'),
+      right: document.getElementById('vid-right'),
+      up:    document.getElementById('vid-up'),
+      wave:  document.getElementById('vid-wave'),
+    };
+
+    let currentVid = 'idle';
+    let vidPlaying = false;
+    let vidQueued = null;
+    let firedForZone = null;
+
+    function showVideo(name) {
+      videos[currentVid].classList.remove('active');
+      videos[name].classList.add('active');
+      currentVid = name;
+    }
+
+    function playDirectional(name) {
+      vidPlaying = true;
+      firedForZone = name;
+      const vid = videos[name];
+      vid.currentTime = 0;
+      vid.playbackRate = 1.5;
+
+      function doSwap() {
+        showVideo(name);
+        vid.play();
+      }
+
+      // Wait for the frame to be ready before showing
+      if (vid.readyState >= 2) {
+        doSwap();
+      } else {
+        vid.addEventListener('canplay', doSwap, { once: true });
+      }
+    }
+
+    function returnToIdle() {
+      vidPlaying = false;
+      const idle = videos.idle;
+      idle.currentTime = 0;
+
+      function doSwap() {
+        idle.play();
+        showVideo('idle');
+        if (vidQueued) {
+          const next = vidQueued;
+          vidQueued = null;
+          playDirectional(next);
+          switchStatement(next);
+        } else {
+          if (currentZone === 'idle') {
+            switchStatement('idle');
+          }
+        }
+      }
+
+      if (idle.readyState >= 2) {
+        doSwap();
+      } else {
+        idle.addEventListener('canplay', doSwap, { once: true });
+      }
+    }
+
+    ['left', 'right', 'up', 'wave'].forEach((dir) => {
+      videos[dir].addEventListener('ended', returnToIdle);
+    });
+
+    // Click on video area to play wave animation
+    document.querySelector('.video-wrap').addEventListener('click', () => {
+      if (currentVid === 'wave') return;
+      if (vidPlaying) {
+        vidQueued = null; // cancel any queued directional
+      }
+      // Stop current directional if playing
+      if (vidPlaying && currentVid !== 'idle') {
+        videos[currentVid].pause();
+      }
+      vidPlaying = true;
+      firedForZone = null;
+      const wav = videos.wave;
+      wav.currentTime = 0;
+      wav.playbackRate = 1;
+
+      function doSwap() {
+        showVideo('wave');
+        wav.play();
+      }
+
+      if (wav.readyState >= 2) {
+        doSwap();
+      } else {
+        wav.addEventListener('canplay', doSwap, { once: true });
+      }
+    });
+
+    function triggerZone(zone) {
+      currentZone = zone;
+      stopIdleCycle();
+      switchStatement(zone);
+
+      if (zone === firedForZone) return;
+      if (!vidPlaying) {
+        playDirectional(zone);
+      } else {
+        vidQueued = zone;
+        firedForZone = zone;
+      }
+    }
+
+    function leaveZone(cardZone) {
+      currentZone = 'idle';
+      switchStatement('idle');
+      startIdleCycle();
+      if (firedForZone === cardZone) {
+        firedForZone = null;
+      }
+    }
+
+    const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+    let activeTouchZone = null;
+
+    document.querySelectorAll('.nav-label').forEach((card) => {
+      // Desktop hover
+      card.addEventListener('mouseenter', () => triggerZone(card.dataset.zone));
+      card.addEventListener('mouseleave', () => leaveZone(card.dataset.zone));
+
+      // Mobile tap
+      card.addEventListener('touchstart', (e) => {
+        const href = card.getAttribute('href');
+        if (href && href !== '#') {
+          e.preventDefault();
+          document.body.style.transition = 'opacity 400ms ease';
+          document.body.style.opacity = '0';
+          setTimeout(() => { window.location.href = href; }, 400);
+        }
+      }, { passive: false });
+    });
+
+    // Tap elsewhere on mobile to return to idle
+    if (isTouchDevice) {
+      document.addEventListener('touchstart', (e) => {
+        if (!e.target.closest('.nav-label') && activeTouchZone) {
+          activeTouchZone = null;
+          leaveZone(currentZone);
+        }
+      });
+    }
+    // Page transition — fade out when navigating to Work
+    document.querySelectorAll('.nav-label').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#') return;
+        e.preventDefault();
+        document.body.style.transition = 'opacity 400ms ease';
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+          window.location.href = href;
+        }, 400);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - James Peel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Cooper Lt BT';
+      src: url('cooper-lt-bt/CooperLtBTLight.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cooper Lt BT';
+      src: url('cooper-lt-bt/CooperBoldBT.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #ffffff;
+      --ink: #121828;
+      --ink-muted: rgba(18,24,40,0.5);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* --- Nav --- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 48px;
+      background: var(--bg);
+    }
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+      filter: brightness(0);
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ink); }
+    .burger { display: none; }
+
+    /* --- Hero with profile pic --- */
+    .about-hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 48px 20px;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+    .about-hero-text {
+      flex: 1;
+    }
+    .about-hero-text h1 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .about-hero-text .intro {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(18,24,40,0.75);
+      max-width: 600px;
+    }
+    .profile-pic {
+      flex: 0 0 300px;
+    }
+    .profile-pic img {
+      width: 100%;
+      border-radius: 16px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 4px solid #ffffff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    /* --- Content sections --- */
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+      position: relative;
+    }
+    .content-polaroid {
+      position: absolute;
+      right: 60px;
+    }
+    .about-content p {
+      max-width: 700px;
+    }
+    .about-content h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      margin-top: 60px;
+    }
+    .about-content h2:first-child { margin-top: 0; }
+    .about-content p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(18,24,40,0.8);
+      margin-bottom: 20px;
+    }
+
+    /* --- Career Journey --- */
+    .career-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+    .career-section h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 40px;
+    }
+    .career-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .career-item {
+      display: flex;
+      gap: 40px;
+      padding: 32px 0;
+      border-top: 1px solid rgba(18,24,40,0.1);
+      align-items: baseline;
+    }
+    .career-item:last-child {
+      border-bottom: 1px solid rgba(18,24,40,0.1);
+    }
+    .career-date {
+      flex: 0 0 160px;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+    .career-details {
+      flex: 1;
+    }
+    .career-role {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+    .career-company {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+    }
+    .career-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(18,24,40,0.7);
+    }
+    .career-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(18,24,40,0.06);
+      color: var(--ink-muted);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-top: 8px;
+    }
+
+    /* --- Education --- */
+    .education-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+    .education-section h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+    }
+    .education-item {
+      padding: 24px 0;
+      border-top: 1px solid rgba(18,24,40,0.1);
+    }
+    .education-degree {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.2rem;
+    }
+    .education-school {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    /* --- Throw hint --- */
+    .throw-hint {
+      text-align: center;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .throw-hint-text {
+      font-family: 'Caveat', cursive;
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--ink-muted);
+    }
+    .throw-hint-arrow {
+      display: block;
+      margin: 4px auto 0;
+      width: 24px;
+      height: 24px;
+      color: var(--ink-muted);
+    }
+
+    /* --- Polaroid Gallery (free-floating) --- */
+    .polaroid-anchor {
+      position: relative;
+      height: 680px;
+      max-width: 1000px;
+      margin: 0 auto 80px;
+      padding: 0 48px;
+    }
+    .polaroid-boundary {
+      width: 100%;
+      height: 100%;
+      border: 2px dashed rgba(18,24,40,0.1);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+    .tidy-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(18,24,40,0.04);
+      border: 1px solid rgba(18,24,40,0.1);
+      color: var(--ink-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 200ms ease, color 200ms ease, opacity 300ms ease;
+      z-index: 5;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .tidy-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .tidy-btn:hover {
+      background: rgba(18,24,40,0.08);
+      color: var(--ink);
+    }
+    .polaroid {
+      position: absolute;
+      width: 220px;
+      background: #fff;
+      padding: 12px 12px 36px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+      transform: rotate(var(--rot));
+      cursor: grab;
+      user-select: none;
+      transition: box-shadow 200ms ease;
+      z-index: 10;
+      text-decoration: none;
+    }
+    .polaroid:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.16); }
+    .polaroid.dragging {
+      cursor: grabbing;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+      z-index: 200;
+      transition: box-shadow 150ms ease;
+    }
+    .polaroid-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: #e8e8e6;
+      border-radius: 4px;
+    }
+    .polaroid--wide {
+      width: 320px;
+    }
+    .polaroid--wide .polaroid-img {
+      aspect-ratio: 16/10;
+    }
+    .polaroid-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .polaroid-caption {
+      display: block;
+      text-align: center;
+      font-size: 0.65rem;
+      color: var(--ink-muted);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: #66A9EF;
+      color: #1B2A4A;
+      padding: 60px 48px;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-email {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      margin-bottom: 12px;
+    }
+    .footer-email a {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .footer-sub {
+      font-size: 0.85rem;
+      color: rgba(27,42,74,0.55);
+      max-width: 400px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-links a {
+      font-family: 'Cooper Lt BT', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(27,42,74,0.6);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    .footer-links a:hover { color: #1B2A4A; }
+
+    /* --- Animations --- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    nav { opacity: 0; animation: fadeIn 500ms ease-out 100ms forwards; }
+    .about-hero { opacity: 0; animation: fadeUp 600ms ease-out 200ms forwards; }
+    .about-content { opacity: 0; animation: fadeUp 600ms ease-out 350ms forwards; }
+    .career-section { opacity: 0; animation: fadeUp 600ms ease-out 500ms forwards; }
+    .education-section { opacity: 0; animation: fadeUp 600ms ease-out 600ms forwards; }
+    footer { opacity: 0; animation: fadeIn 600ms ease-out 700ms forwards; }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      nav { padding: 14px 24px; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        z-index: 200;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.4rem; }
+      .nav-logo img { height: 36px; }
+      .burger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 300;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+      .burger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition: transform 200ms ease, opacity 200ms ease;
+      }
+      .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .burger.open span:nth-child(2) { opacity: 0; }
+      .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .about-hero {
+        padding: 36px 24px 24px;
+        flex-direction: column;
+        gap: 24px;
+        align-items: flex-start;
+      }
+      .about-hero-text { order: 2; }
+      .about-hero-text h1 { font-size: 1.8rem; }
+      .profile-pic { order: 1; flex: 0 0 100px; width: 100px; }
+
+      .about-content { padding: 0 24px 48px; }
+      .about-content h2 { font-size: 1.5rem; margin-top: 40px; }
+
+      .career-section { padding: 0 24px 48px; }
+      .career-item {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .career-date { flex: none; }
+
+      .education-section { padding: 0 24px 48px; }
+
+      .polaroid-title { display: none; }
+      .throw-hint { display: none; }
+      .polaroid-anchor { display: none; }
+      .polaroid { display: none; }
+      .content-polaroid { display: none; }
+
+      footer { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="James%20logo%202%20black.svg" alt="James Peel">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="work.html">Work</a>
+      <a href="experiments.html">Experiments</a>
+      <a href="about.html" class="active">About</a>
+
+    </div>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <div class="about-hero-text">
+      <h1>A product designer who makes complex things feel simple.</h1>
+      <p class="intro">I'm James Peel, a senior product designer based in London. I've spent seven years shipping products across logistics, fintech, healthcare, and government. From tools that saved Amazon $250M to platforms showcasing 7,000 graduates' work, I care about craft, clarity, and making things that actually work for the people using them.</p>
+    </div>
+    <div class="profile-pic">
+      <img src="about%20photos/James%20PP.png" alt="James Peel">
+    </div>
+  </section>
+
+  <!-- How I Work -->
+  <section class="about-content" id="aboutContent">
+    <a class="polaroid content-polaroid" style="--rot: -2deg; top: 20px;" data-content-polaroid href="https://www.linkedin.com/feed/update/urn:li:activity:7377008730267324417/" target="_blank">
+      <div class="polaroid-img"><img src="about%20photos/future%20product%20days.jpeg" alt="Future Product Days conference"></div>
+      <span class="polaroid-caption">Future Product Days<br>@Xeneta, 2025</span>
+    </a>
+    <a class="polaroid content-polaroid" style="--rot: 2deg; top: 320px;" data-content-polaroid href="https://www.linkedin.com/in/james-peel/" target="_blank">
+      <div class="polaroid-img"><img src="new%20photos/Workshops%20and%20talks/London%20tech%20week.jpeg" alt="London Tech Week"></div>
+      <span class="polaroid-caption">London Tech Week<br>@Cognizant, 2023</span>
+    </a>
+    <h2>How I Work</h2>
+    <p>I'm most useful when I'm close to the problem. I like to understand the full picture before opening Figma: the business goals, the technical constraints, the user's actual behaviour. I prototype early, test often, and push for simplicity wherever possible.</p>
+    <p>I've worked as the first designer on engineering-led teams, as a consultant parachuted into complex client environments, and as a design lead shaping product strategy. The common thread is turning messy, complex domains into experiences that feel obvious in hindsight.</p>
+
+    <h2>Talks &amp; Community</h2>
+    <p>I regularly attend and speak at design conferences and events. My work at Xeneta was nominated at Future Product Days 2025 and won the Ship Technology Excellence Award. I've attended GOV.UK Design System Day, London Tech Week, and run internal AI workshops to help teams explore how design and AI intersect.</p>
+
+    <h2>Outside of Work</h2>
+    <p>Long runs, strong coffee, and a cat who thinks she's helping. I'm always tinkering with side projects and experimenting with what good design looks like when AI is part of the interface.</p>
+  </section>
+
+  <!-- Polaroid section title -->
+  <div class="polaroid-title" style="max-width: 1200px; margin: 0 auto; padding: 0 48px;">
+    <h2 style="font-family: 'Cooper Lt BT', serif; font-weight: 300; font-size: 1.8rem; margin-bottom: 8px;">Moments from my career</h2>
+  </div>
+
+  <!-- Throw hint -->
+  <div class="throw-hint">
+    <span class="throw-hint-text">you can throw these around!</span>
+    <svg class="throw-hint-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5c0 0-1 4-1 7s1.5 5 1.5 5"/>
+      <path d="M9 14l3 4 3-4"/>
+    </svg>
+  </div>
+
+  <!-- Polaroid anchor — polaroids start clustered here -->
+  <div class="polaroid-anchor" id="polaroidAnchor">
+    <div class="polaroid-boundary"></div>
+    <button class="tidy-btn" id="tidyBtn">Tidy up</button>
+    <!-- Row 1 -->
+    <a class="polaroid" style="--rot: -2deg;" data-ox="1%" data-oy="15px" href="https://www.linkedin.com/in/james-peel/" target="_blank">
+      <div class="polaroid-img"><img src="new%20photos/Workshops%20and%20talks/GOV%20UK%20design%20System%20day.jpeg" alt="GOV.UK Design System Day"></div>
+      <span class="polaroid-caption">GOV.UK Design System Day<br>@Cognizant, 2023</span>
+    </a>
+    <a class="polaroid" style="--rot: 1deg;" data-ox="24%" data-oy="20px" href="https://www.linkedin.com/in/james-peel/" target="_blank">
+      <div class="polaroid-img"><img src="new%20photos/Workshops%20and%20talks/GOV%20UK%20design%20System%20day%202.jpeg" alt="GOV.UK Design System Day"></div>
+      <span class="polaroid-caption">Design System Day<br>@Cognizant, 2023</span>
+    </a>
+    <a class="polaroid" style="--rot: 2deg;" data-ox="46%" data-oy="10px" href="https://www.linkedin.com/in/james-peel/" target="_blank">
+      <div class="polaroid-img"><img src="new%20photos/Workshops%20and%20talks/London%20tech%20week%202.jpeg" alt="London Tech Week"></div>
+      <span class="polaroid-caption">London Tech Week<br>@Cognizant, 2023</span>
+    </a>
+    <a class="polaroid polaroid--wide" style="--rot: -1deg;" data-ox="66%" data-oy="15px" href="https://www.linkedin.com/in/james-peel/" target="_blank">
+      <div class="polaroid-img"><img src="new%20photos/Workshops%20and%20talks/AI%20Workshop.jpeg" alt="AI Design Workshop"></div>
+      <span class="polaroid-caption">AI + Design Workshop<br>@Cognizant, 2023</span>
+    </a>
+    <!-- Row 2 -->
+    <a class="polaroid" style="--rot: 2deg;" data-ox="1%" data-oy="350px" href="https://www.linkedin.com/feed/update/urn:li:activity:6841746890351005697/" target="_blank">
+      <div class="polaroid-img"><img src="about%20photos/Amazon%20london%20office.jpeg" alt="Amazon London office"></div>
+      <span class="polaroid-caption">Amazon London<br>@Amazon, 2021</span>
+    </a>
+    <a class="polaroid" style="--rot: -1deg;" data-ox="26%" data-oy="355px" href="https://www.linkedin.com/feed/update/urn:li:activity:6976169806915899392/" target="_blank">
+      <div class="polaroid-img"><img src="about%20photos/amazon%20charity.jpeg" alt="Amazon charity team"></div>
+      <span class="polaroid-caption">Amazon Charity Event<br>@Amazon, 2022</span>
+    </a>
+    <a class="polaroid" style="--rot: 3deg;" data-ox="51%" data-oy="345px" href="https://www.linkedin.com/feed/update/urn:li:activity:6911673724010127360/" target="_blank">
+      <div class="polaroid-img"><img src="about%20photos/amazon%20spheres2.jpeg" alt="Amazon Spheres Seattle"></div>
+      <span class="polaroid-caption">Seattle Spheres<br>@Amazon, 2022</span>
+    </a>
+    <a class="polaroid" style="--rot: -2deg;" data-ox="76%" data-oy="350px" href="https://www.linkedin.com/feed/update/urn:li:activity:6625862839657615360/" target="_blank">
+      <div class="polaroid-img"><img src="about%20photos/IBM%20nhs.jpeg" alt="NHS Digital team at IBM"></div>
+      <span class="polaroid-caption">NHS Digital × IBM<br>@IBM iX, 2020</span>
+    </a>
+  </div>
+
+  <!-- Career Journey -->
+  <section class="career-section">
+    <h2>Career Journey</h2>
+    <div class="career-timeline">
+
+      <div class="career-item">
+        <div class="career-date">Aug 2024 - Present</div>
+        <div class="career-details">
+          <div class="career-role">Senior Product Designer</div>
+          <div class="career-company">Xeneta</div>
+          <p class="career-desc">Leading design on Xeneta's most strategic initiatives, turning 700 million crowdsourced freight rates across 170,000 trade lanes into clear, actionable insight for logistics giants like Walmart, Amazon, Coca-Cola, and Maersk.</p>
+          <a class="career-tag" href="https://www.ship-technology.com/featured-company/2025-xeneta/" target="_blank" style="text-decoration:none;">Ship Technology Innovation Award 2025</a>
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-date">Jan 2023 - Aug 2024</div>
+        <div class="career-details">
+          <div class="career-role">Senior UX Design Consultant</div>
+          <div class="career-company">Cognizant</div>
+          <p class="career-desc">Led design on key accounts in public sector and hospitality, including redesigning Greene King's end-to-end booking journey across 3,600+ pubs. Developed user-centred solutions that streamlined operations and boosted engagement.</p>
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-date">Jun 2021 - Jan 2023</div>
+        <div class="career-details">
+          <div class="career-role">UX Designer</div>
+          <div class="career-company">Amazon</div>
+          <p class="career-desc">First designer on the team within Amazon's Global Transportation Technology org. Helped establish GTTX, the experience design function, and shipped Umbrella, a weather monitoring and logistics automation tool that saved over $250M in its first year.</p>
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-date">Jul 2019 - Aug 2020</div>
+        <div class="career-details">
+          <div class="career-role">UX Designer</div>
+          <div class="career-company">IBM iX</div>
+          <p class="career-desc">Design consultant at IBM's worldwide business design consultancy. Shipped the official Liverpool FC app (2M+ downloads, 4.5-star rating) and led UI design on the UAL Graduate Showcase for 7,000 students across six colleges.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="education-section">
+    <h2>Education</h2>
+    <div class="education-item">
+      <div class="education-degree">Product Design, BSc — First Class Honours</div>
+      <div class="education-school">University of Sussex</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-email"><a href="https://www.linkedin.com/in/james-peel/" target="_blank">Contact me via LinkedIn</a></div>
+      <p class="footer-sub">Always open to interesting problems and good conversations.</p>
+      <div class="footer-links">
+        <a href="mailto:jimmyjopeel@gmail.com">jimmyjopeel@gmail.com</a>
+        <a href="tel:+447479704604">+44 7479 704604</a>
+  
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('burger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.getElementById('burger').classList.remove('open');
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+  </script>
+  <script>
+    (function() {
+      const anchor = document.getElementById('polaroidAnchor');
+      const tidyBtn = document.getElementById('tidyBtn');
+      const anchorPolaroids = Array.from(anchor.querySelectorAll('.polaroid'));
+      const contentPolaroids = Array.from(document.querySelectorAll('[data-content-polaroid]'));
+      const polaroids = anchorPolaroids.concat(contentPolaroids);
+      let topZ = 10;
+      let anyMoved = false;
+
+      // Store home positions for anchor polaroids
+      anchorPolaroids.forEach(p => {
+        const ox = p.dataset.ox;
+        const oy = parseInt(p.dataset.oy, 10);
+        const parentW = anchor.offsetWidth;
+        const xPx = (parseFloat(ox) / 100) * parentW;
+        p.style.left = xPx + 'px';
+        p.style.top = oy + 'px';
+        p._homeLeft = xPx;
+        p._homeTop = oy;
+        p._homeRot = p.style.getPropertyValue('--rot');
+        p._homeParent = anchor;
+      });
+
+      // Store home positions for content polaroids
+      contentPolaroids.forEach(p => {
+        p._homeRot = p.style.getPropertyValue('--rot');
+        p._homeParent = p.parentElement;
+        p._homeStyle = {
+          right: p.style.right || '60px',
+          top: p.style.top,
+          left: p.style.left
+        };
+      });
+
+      function showTidy() {
+        if (!anyMoved) { anyMoved = true; tidyBtn.classList.add('visible'); }
+      }
+
+      // Tidy up: return all polaroids to their original positions
+      tidyBtn.addEventListener('click', function() {
+        anchorPolaroids.forEach(p => {
+          // If moved to body, put back in anchor
+          if (p.parentElement !== anchor) {
+            anchor.appendChild(p);
+          }
+          p.style.transition = 'left 500ms ease, top 500ms ease, transform 500ms ease';
+          p.style.left = p._homeLeft + 'px';
+          p.style.top = p._homeTop + 'px';
+          p.style.transform = 'rotate(' + p._homeRot + ')';
+          p.style.zIndex = 10;
+          setTimeout(() => { p.style.transition = ''; }, 520);
+        });
+
+        contentPolaroids.forEach(p => {
+          if (p.parentElement !== p._homeParent) {
+            p._homeParent.appendChild(p);
+          }
+          p.style.transition = 'left 500ms ease, top 500ms ease, right 500ms ease, transform 500ms ease';
+          p.style.left = p._homeStyle.left || '';
+          p.style.top = p._homeStyle.top;
+          p.style.right = p._homeStyle.right;
+          p.style.transform = 'rotate(' + p._homeRot + ')';
+          p.style.zIndex = 10;
+          setTimeout(() => { p.style.transition = ''; }, 520);
+        });
+
+        // Reset moved-to-body flags
+        polaroids.forEach(p => { p._movedToBody = false; });
+        tidyBtn.classList.remove('visible');
+        anyMoved = false;
+      });
+
+      polaroids.forEach(p => {
+        let isDragging = false;
+        let didDrag = false;
+        let startX, startY, origLeft, origTop;
+        let velX = 0, velY = 0;
+        let lastX, lastY, lastTime;
+        let animFrame;
+
+        p.addEventListener('click', function(e) {
+          if (didDrag) { e.preventDefault(); didDrag = false; }
+        });
+
+        function moveToBody() {
+          if (p._movedToBody) return;
+          const rect = p.getBoundingClientRect();
+          const pageLeft = rect.left + window.scrollX;
+          const pageTop = rect.top + window.scrollY;
+          document.body.appendChild(p);
+          p.style.left = pageLeft + 'px';
+          p.style.top = pageTop + 'px';
+          p.style.right = 'auto';
+          p._movedToBody = true;
+          showTidy();
+        }
+
+        function onDown(e) {
+          e.preventDefault();
+          moveToBody();
+          isDragging = true;
+          didDrag = false;
+          p.classList.add('dragging');
+          p.style.zIndex = ++topZ;
+          p.style.transform = 'rotate(0deg)';
+
+          const touch = e.touches ? e.touches[0] : e;
+          startX = touch.clientX;
+          startY = touch.clientY;
+          origLeft = p.offsetLeft;
+          origTop = p.offsetTop;
+          lastX = startX;
+          lastY = startY;
+          lastTime = Date.now();
+          velX = 0;
+          velY = 0;
+          cancelAnimationFrame(animFrame);
+        }
+
+        function onMove(e) {
+          if (!isDragging) return;
+          e.preventDefault();
+          const touch = e.touches ? e.touches[0] : e;
+          const dx = touch.clientX - startX;
+          const dy = touch.clientY - startY;
+          if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
+          p.style.left = origLeft + dx + 'px';
+          p.style.top = origTop + dy + 'px';
+
+          const now = Date.now();
+          const dt = now - lastTime;
+          if (dt > 0) {
+            velX = (touch.clientX - lastX) / dt * 16;
+            velY = (touch.clientY - lastY) / dt * 16;
+          }
+          lastX = touch.clientX;
+          lastY = touch.clientY;
+          lastTime = now;
+        }
+
+        function onUp() {
+          if (!isDragging) return;
+          isDragging = false;
+          p.classList.remove('dragging');
+          coast(velX, velY, velX * 0.3);
+        }
+
+        function coast(vx, vy, spin) {
+          const friction = 0.92;
+          const spinFriction = 0.94;
+
+          function step() {
+            vx *= friction;
+            vy *= friction;
+            spin *= spinFriction;
+
+            let left = p.offsetLeft + vx;
+            let top = p.offsetTop + vy;
+
+            const pageW = document.documentElement.clientWidth;
+            const pW = p.offsetWidth;
+            if (left < 0) { left = 0; vx *= -0.4; }
+            if (left > pageW - pW) { left = pageW - pW; vx *= -0.4; }
+
+            p.style.left = left + 'px';
+            p.style.top = top + 'px';
+            p.style.transform = 'rotate(' + spin + 'deg)';
+
+            if (Math.abs(vx) > 0.1 || Math.abs(vy) > 0.1 || Math.abs(spin) > 0.1) {
+              animFrame = requestAnimationFrame(step);
+            }
+          }
+          animFrame = requestAnimationFrame(step);
+        }
+
+        p.addEventListener('mousedown', onDown);
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+
+        p.addEventListener('touchstart', onDown, { passive: false });
+        document.addEventListener('touchmove', onMove, { passive: false });
+        document.addEventListener('touchend', onUp);
+      });
+    })();
+  </script>
+</body>
+</html>
