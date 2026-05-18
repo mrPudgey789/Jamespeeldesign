@@ -143,6 +143,9 @@
       transition: opacity 250ms ease;
     }
     .video-wrap video.active { opacity: 1; }
+    .video-wrap video::-webkit-media-controls { display: none !important; }
+    .video-wrap video::-webkit-media-controls-start-playback-button { display: none !important; }
+    .video-wrap video::-webkit-media-controls-panel { display: none !important; }
 
     /* --- Typewriter hero statement --- */
     .hero-statement {
@@ -792,12 +795,21 @@
     };
 
     // Force autoplay on mobile (iOS fallback)
+    // iOS Low Power Mode blocks autoplay entirely — detect and force play on first tap
     var idleVid = videos.idle;
-    idleVid.play().catch(function() {});
-    document.addEventListener('touchstart', function forcePlay() {
-      idleVid.play().catch(function() {});
-      document.removeEventListener('touchstart', forcePlay);
-    }, { once: true });
+    var playPromise = idleVid.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function() {
+        // Autoplay blocked (likely Low Power Mode) — play on first interaction
+        function forcePlay() {
+          idleVid.play();
+          document.removeEventListener('touchstart', forcePlay);
+          document.removeEventListener('click', forcePlay);
+        }
+        document.addEventListener('touchstart', forcePlay, { once: true });
+        document.addEventListener('click', forcePlay, { once: true });
+      });
+    }
 
     let currentVid = 'idle';
     let vidPlaying = false;
