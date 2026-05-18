@@ -352,7 +352,7 @@
     <div class="project-hero-inner">
       <a href="work.html" class="back-link">&larr; All projects</a>
       <h1>Redesigning How the World Prices Ocean Freight</h1>
-      <p class="subtitle">Ocean freight contracts break when markets move. I led design on the simulator and contract manager Xeneta uses to fix that, helping turn indexing from a concept into a core part of the platform.</p>
+      <p class="subtitle">Helping turn index-linked freight contracts from a complex commercial concept into a product customers actually use.</p>
       <div class="project-meta-bar">
         <div class="meta-item">
           <span class="meta-label">Company</span>
@@ -367,56 +367,73 @@
           <span class="meta-value">2024 - Present</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Surfaces</span>
-          <span class="meta-value">Simulator, Contract Manager</span>
+          <span class="meta-label">Surface</span>
+          <span class="meta-value">Index-Linked Contract Simulator</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Recognition</span>
-          <span class="meta-value">Ship Technology Award, UX Nordic finalist</span>
+          <span class="meta-value">Ship Technology Excellence Award, UX Nordic Awards finalist</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Hero image placeholder -->
+  <!-- Hero video -->
   <div class="project-img-full" style="margin-top: 60px;">
-    <div class="img-placeholder">Add hero image: Simulator V2 on dark navy, or product walkthrough video</div>
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px;">
+      <iframe src="https://www.youtube.com/embed/A5LQ0vhhFa8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p class="img-caption">Simulator V1 product walkthrough video.</p>
   </div>
 
   <!-- The Challenge -->
   <section class="content">
     <h2>The Challenge</h2>
-    <p>The ocean freight industry runs on twelve-month fixed-rate contracts that take four to six months to negotiate. When markets shift, those contracts stop working. During Covid, rates spiked over 600%. During the Red Sea crisis, over 400%. Either the shipper overpays or the carrier rolls the cargo and the supply chain breaks.</p>
-    <p>Index-linked contracts solve this by tying rates to a market index, so pricing moves with the market instead of being locked in at the wrong moment. The mechanism is well established in finance, construction, and real estate. Ocean freight is catching up.</p>
-    <p>Xeneta's bet was that this is where the market is heading. The product question was whether design could make a complex commercial mechanism understandable and trustworthy enough that customers would actually use it.</p>
+    <p>Ocean freight runs on annual fixed-price contracts that take months to negotiate. When the market moves, the contracts stop working, and the supply chain breaks.</p>
+    <p>Index-linked contracts solve this by tying rates to a market index, so pricing moves with the market instead of being locked in at the wrong moment. The mechanism works. The problem is that it's complex, unfamiliar to most of the industry, and built on commercial judgement calls that customers need to feel confident making.</p>
+    <p>My job was to design a product that made those judgement calls navigable rather than intimidating, and turn indexing from a niche capability into something customers across the market would adopt.</p>
   </section>
 
   <div class="project-img-full">
-    <div class="img-placeholder">Add image: Index-linked vs fixed-rate contract chart</div>
+    <div class="img-placeholder">Add image: Index-linked vs fixed-rate pricing over time</div>
     <p class="img-caption">Index-linked contracts move with the market. Fixed-rate contracts often don't.</p>
   </div>
 
   <!-- Research & Discovery -->
   <section class="content">
     <h2>Research &amp; Discovery</h2>
-    <p>I worked across two connected products. The Simulator is the entry point, where customers model how an index-linked contract would have performed historically. The Contract Manager is where those contracts run once they are live, with automatic rate adjustments and an audit trail.</p>
-    <p>Discovery ran in parallel with Customer Success Managers, who spend the most time explaining indexing to customers, and with freight forwarders, who use the Simulator to validate the approach internally and in supplier negotiations. We also analysed sixty-plus live index-linked contracts already in market to understand which parameters customers were actually using and where the existing contracts were breaking.</p>
-    <p>A consistent insight surfaced early: customers do not want indexing simplified. They want it made navigable. The decisions inside an index-linked contract are commercial judgement calls, and customers wanted to feel ownership of those calls rather than have the product make them invisible.</p>
+    <p>I led discovery with the people closest to the problem: customer success managers, who spend the most time explaining indexing, and freight forwarders, who use the Simulator to validate the approach with their own customers. We also analysed how existing index-linked contracts in market were configured to understand which parameters customers were really using.</p>
+    <p>One insight kept surfacing: customers trusted Xeneta's data, but not always the mechanics behind it. They believed the benchmarks were accurate. They struggled to understand how an indexed price would actually behave over time, what triggered a rate adjustment, or how to defend the mechanism to their own stakeholders.</p>
+    <p>That reframed the work. Transparency mattered more than automation. The product needed to make complex pricing logic explainable, not hide it.</p>
   </section>
 
   <div class="project-img-full">
-    <div class="img-placeholder">Add image: Index Readiness Assessment panel or customer co-creation session</div>
-    <p class="img-caption">Discovery shifted the framing from a single volatility score to a broader readiness assessment covering volatility, coverage, data quality, and volume.</p>
+    <div class="img-placeholder">Add image: Research artefact, workshop output, or customer co-creation session</div>
+    <p class="img-caption">Customers trusted the data. The mechanics were the gap.</p>
+  </div>
+
+  <!-- From research to product strategy -->
+  <section class="content">
+    <h2>From research to product strategy</h2>
+    <p>The workshops surfaced a more fundamental question than how to design any single screen. Customers were entering the world of index-linked contracts from completely different starting points. Some wanted to test the idea before committing. Some had already signed contracts externally and needed somewhere to operationalise them. Some were already running indexed contracts using Xeneta data and needed to monitor them.</p>
+    <p>I synthesised the research into a product architecture that mapped these journeys end to end: who the personas were, where they came in, and how the surfaces needed to connect. This became the artefact I used to align product, commercial, and engineering on what we were actually building and in what order.</p>
+    <p>Two decisions came out of it. The first was to launch a free, standalone simulator as the front door. Letting customers backtest the idea without commitment was the lowest-friction way to build understanding, and the simulator could prove value before any contract was on the table. The second was to design the simulator and the live contract manager as one connected system, so the trust built in simulation could carry into operation rather than being lost at handover.</p>
+    <p>The simulator is the surface this case study focuses on, and the one that won the award. It's also the surface that opened the door to everything else.</p>
+  </section>
+
+  <div class="project-img-full">
+    <div class="img-placeholder">Add image: Product architecture diagram from workshop synthesis, showing personas, entry points, and four-stage product flow</div>
+    <p class="img-caption">A product architecture mapped from workshop research, showing how different customers enter the indexing journey and where the surfaces needed to connect.</p>
   </div>
 
   <!-- Design Decisions -->
   <section class="content">
     <h2>Design Decisions</h2>
 
-    <h3>Configuration is the user's job</h3>
-    <p>There was internal pressure to use generative AI to produce contract rules from a natural language prompt. The premise was that this would speed up the user.</p>
-    <p>I pushed back. Index-linked contract rules are commercial judgement, not configuration. A contract owner choosing a 50% discount on a backhaul corridor is making a call about margin tolerance, supplier relationships, and market outlook. If an AI generates that for them, they cannot defend it to a customer or explain it to their CFO with confidence. The deliberate process of configuring each parameter is what builds the trust the rest of the product depends on.</p>
-    <p>Where intelligent assistance does add value is after configuration, showing the user how their rules would have performed historically and where rates would have crossed a floor. That reinforces understanding rather than bypassing it.</p>
+    <h3>How trust gets built</h3>
+    <p>I ran a workshop with one of the largest logistics service providers in the world, a company that already uses Xeneta's data and sells index-linked contracts to its own customers. The goal was to understand how they actually pitch and configure these contracts in the real world.</p>
+    <p>The most useful thing we learned had nothing to do with the product. Their sales teams don't sell indexing by handing customers a finished contract. They walk customers through the choices: which index to reference, how aggressive a discount to take, how often to re-rate, where to set the floor. The deliberate act of making those choices, together, is what gets the customer to sign. It's how trust gets built.</p>
+    <p>That gave me a clear principle for the simulator. The product should feel like the sales conversation, not skip past it. The user owns the decisions. The product brings the data, the historical context, and the ability to test what those decisions would actually mean. Configuration is where confidence is built. The visualisation and backtesting are where it pays off.</p>
   </section>
 
   <div class="project-img-row">
@@ -428,51 +445,50 @@
     </div>
   </div>
   <div class="project-img-full" style="margin-top: -40px; margin-bottom: 60px;">
-    <p class="img-caption">The user configures. The system shows them what their choices mean.</p>
-  </div>
-
-  <section class="content">
-    <h3>Honest language for an uncertain system</h3>
-    <p>When Xeneta ingests a rate from a customer upload, it has to link that rate to a parent contract in the Contract Manager. The original design used status labels that implied certainty the system did not have. "Matched" suggested a confirmed link. "No match" was shown even when multiple potential candidates existed.</p>
-    <p>The matching system actually returns confidence levels, not binary outcomes. The available parameters (origin, destination, equipment type) are not enough to guarantee a true match. I rebuilt the table around the user's decision rather than the system's verdict.</p>
-    <p>The five real states became: <strong>Linked</strong> (user has confirmed), <strong>Review</strong> (one candidate found, verify it), <strong>Choose</strong> (multiple candidates, pick one), <strong>No candidates</strong> (create a new contract instead), and <strong>Create new</strong> as an action available from any unlinked state.</p>
-    <p>This work also drove a scope decision. Self-serve matching was pulled from V1 because the parameters were not yet strong enough to support it at scale. The redesign made the limitation visible rather than papering over it.</p>
-  </section>
-
-  <div class="project-img-full">
-    <div class="img-placeholder">Add image: Before/after of the linking table with old vs new labels</div>
-    <p class="img-caption">Labels that reflect what the system actually knows.</p>
+    <p class="img-caption">The user configures. The product shows them what their choices would have meant.</p>
   </div>
 
   <section class="content">
     <h3>Progressive disclosure under commercial pressure</h3>
-    <p>Backhaul and low-volume corridors create a specific failure mode in index-linked contracts. When the index drops to extreme lows, percentage-based adjustments produce rates that no longer cover terminal handling. The contract works mathematically and fails commercially.</p>
-    <p>The fix is a threshold mechanism that automatically switches the calculation from percentage-based to dollar-based when the index crosses a defined floor, and reverts when it recovers. Easy to describe. Hard to expose in a setup flow that already asks the user to configure trade lanes, indices, adjustment schedules, calculation methods, and rate guardrails.</p>
-    <p>Three decisions shaped the result. One global rule per trade lane group, not per lane, to keep the mental model simple at scale. Threshold configuration placed after trade lanes so the system can run detection first and surface a real signal rather than a theoretical setting. System recommendations advisory and collapsed by default, with corridor-level breakdown another layer down, so the user retains authority over the values.</p>
+    <p>A new feature needed to be added to a setup flow that was already dense with configuration. The pressure was to surface it early, give it weight, make it findable.</p>
+    <p>I designed the opposite. The feature appears only after the user has configured the corridors that make it relevant, at which point the system can surface a real signal rather than ask the user to reason about a theoretical one. Recommendations sit collapsed by default. The user retains authority over the values throughout.</p>
+    <p>The same principle shaped the wider setup experience. Essential parameters sit on the surface. Advanced configuration is available but never demanded. New users can move quickly. Experienced users get the depth they need without the rest of the product getting in their way.</p>
   </section>
 
   <div class="project-img-full">
-    <div class="img-placeholder">Add image: Threshold configuration section with detection alert and collapsed recommendation panel</div>
+    <div class="img-placeholder">Add image: Configuration section showing contextual signal and collapsed recommendation panel</div>
     <p class="img-caption">The system surfaces a signal. The user makes the call.</p>
   </div>
 
   <section class="content">
-    <h3>Validation in the open</h3>
-    <p>The Simulator V2 was tested in a customer co-creation session with a major logistics provider, alongside parallel input from CSMs working directly with shippers and forwarders. The portfolio-level savings breakdown and the estimated RFQ time-saving metric in the bottom panel came directly from that work.</p>
-    <p>I built functional prototypes in code rather than relying on static mockups for stakeholder reviews. It meant decisions landed faster, customers could interact with the work in sessions instead of imagining it, and engineering had something concrete to align against. Several scope decisions came from understanding the engineering reality early enough to design around it rather than into it.</p>
+    <h3>Prototyping in code, not slides</h3>
+    <p>I built functional prototypes in code rather than relying on static mockups for stakeholder and customer reviews. It changed how the work landed.</p>
+    <p>Customers could interact with the work in sessions instead of imagining it, which produced sharper feedback. Engineering had something concrete to align against, which surfaced technical realities earlier and prevented scope from drifting late. Several decisions, including which features to defer, came out of conversations that wouldn't have happened over a Figma file.</p>
   </section>
 
   <div class="project-img-full">
-    <div class="img-placeholder">Add image: Customer session still or internal demo deck</div>
-    <p class="img-caption">Functional prototypes meant customers could interact with the work, not imagine it.</p>
+    <div class="img-placeholder">Add image: Customer co-creation session or working prototype screenshot</div>
+    <p class="img-caption">Functional prototypes meant customers could use the work, not just look at it.</p>
   </div>
 
   <!-- Outcome -->
   <section class="content">
     <h2>Outcome</h2>
-    <p>The Simulator launched and now shows sustained engagement across the actions that matter: simulations started, portfolios created, rules saved, and exports generated. Strongest usage comes from freight forwarders, who use it to model index-linked contracts and explain them to their own customers.</p>
-    <p>The indexing work contributed to a Ship Technology Excellence Award and a UX Nordic Awards finalist submission. Indexing is now positioned as core infrastructure within Xeneta's product strategy, with the 2026 roadmap extending the Simulator into futures and derivatives so customers can hedge their index-linked contracts as well as model them.</p>
-    <p>The work that started as a niche commercial experiment has become one of the platform's strategic surfaces. The product question was whether design could make this mechanism trustworthy enough for customers to adopt. The usage data and the customer response say it did.</p>
+    <p>Since launch, the Simulator has run <strong>1,500+ simulations</strong> across <strong>660+ users at 250+ customer companies</strong>, with sustained monthly engagement and adoption across every part of the freight market it was designed for.</p>
+    <p>The work won a <strong>Ship Technology Excellence Award</strong> and was a <strong>UX Nordic Awards finalist</strong>. Indexing has moved from a side bet to one of Xeneta's strategic surfaces, with the 2026 roadmap extending the Simulator into futures and derivatives so customers can hedge their contracts as well as model them.</p>
+    <p>The bigger shift was positioning. Indexing helped move Xeneta from a benchmarking tool toward a strategic procurement platform. The product question I started with was whether design could make this mechanism trustworthy enough for customers to adopt. The usage data says it could.</p>
+  </section>
+
+  <div class="project-img-full">
+    <div class="img-placeholder">Add chart: Simulations over time, or stat block with headline numbers</div>
+    <p class="img-caption">1,500+ simulations. 660+ users. 250+ companies. Thirteen months.</p>
+  </div>
+
+  <!-- What I learned -->
+  <section class="content">
+    <h2>What I learned</h2>
+    <p><strong>Trust is a UX problem.</strong> In enterprise products, especially financial ones, transparency is more valuable than simplification. Customers making commercial decisions don't want a black box. They want visibility, confidence, and the ability to defend the result to someone else.</p>
+    <p><strong>The best product research happens where the product isn't.</strong> Watching how a sales team actually sells indexing taught me more about how the simulator needed to feel than any usability test could have. Domain authority belongs with the user, and the product's job is to bring the data, the context, and the patience to let them work it out.</p>
   </section>
 
   <!-- Results -->
@@ -480,16 +496,16 @@
     <h2>Results</h2>
     <div class="outcomes-grid">
       <div class="outcome-card">
-        <div class="outcome-stat">60+</div>
-        <div class="outcome-desc">Live index-linked contracts analysed in discovery</div>
+        <div class="outcome-stat">1,500+</div>
+        <div class="outcome-desc">Simulations run since launch</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat">660+</div>
+        <div class="outcome-desc">Users across 250+ customer companies</div>
       </div>
       <div class="outcome-card">
         <div class="outcome-stat">Award</div>
-        <div class="outcome-desc">Ship Technology Excellence Award</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-stat">Finalist</div>
-        <div class="outcome-desc">UX Nordic Awards</div>
+        <div class="outcome-desc">Ship Technology Excellence Award, UX Nordic finalist</div>
       </div>
     </div>
   </section>

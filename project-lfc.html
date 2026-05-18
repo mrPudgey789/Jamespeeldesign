@@ -383,6 +383,16 @@
     .project-hero-inner { opacity: 0; animation: fadeUp 600ms ease-out 200ms forwards; }
     .fullscreen-video { opacity: 0; animation: fadeIn 600ms ease-out 400ms forwards; }
 
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 600ms ease-out, transform 600ms ease-out;
+    }
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* --- Responsive --- */
     @media (max-width: 768px) {
       .nav-inner { padding: 14px 24px; }
@@ -530,25 +540,25 @@
   </div>
 
   <!-- Approach -->
-  <section class="content">
+  <section class="content scroll-reveal">
     <h2>The Approach</h2>
     <p>We worked in a multidisciplinary team using an iterative sprint process — cycling through learning, creation, testing, and implementation. Each sprint focused on a specific feature, allowing us to refine the experience incrementally rather than betting everything on a single big launch.</p>
     <p>The design direction was deliberately stripped back. Rather than cramming in every possible feature, we focused on delivering an authentic, football-focused experience with intuitive navigation. Key player content and match data had to be immediately accessible, not buried three taps deep.</p>
   </section>
 
   <!-- Journey map -->
-  <div class="img-full">
+  <div class="img-full scroll-reveal">
     <img src="Liverpool/journey%20map.avif" alt="LFC App user journey map">
   </div>
 
   <!-- UX Flow — News & Home -->
-  <div class="img-row img-row--2">
+  <div class="img-row img-row--2 scroll-reveal">
     <img src="Liverpool/5f3ffb78bc766a807e3478e6_2.png" alt="LFC App home screen with live match score and news feed">
     <img src="Liverpool/5f3fff24be2372236401d21d_6.png" alt="Search results showing player articles and news content">
   </div>
 
   <!-- Fixtures & Results -->
-  <section class="content">
+  <section class="content scroll-reveal">
     <h2>Fixtures &amp; Results</h2>
     <p>The fixtures screen was designed to surface match information quickly across all team categories — Mens, Womens, and Academy. A tabbed navigation lets fans switch between matches, league tables, and stats without leaving the context of the results experience.</p>
     <p>Featured matches like Champions League fixtures received a more prominent visual treatment with club crests, venue info, and countdown timers, giving match-day content the weight it deserves.</p>
@@ -573,7 +583,7 @@
   </div>
 
   <!-- Stats -->
-  <section class="content">
+  <section class="content scroll-reveal">
     <h2>Team Statistics</h2>
     <p>Rich data visualisations brought team performance to life. Attack stats, defensive records, and performance metrics were designed to be immediately readable — large numbers, clear labels, and data visualisations that tell a story at a glance. The red-on-red treatment keeps everything on-brand while maintaining legibility.</p>
   </section>
@@ -588,13 +598,13 @@
   </div>
 
   <!-- Design System -->
-  <section class="content">
+  <section class="content scroll-reveal">
     <h2>Design System</h2>
     <p>A core part of the project was establishing a dedicated LFC Design System. This solved three problems the team kept running into: inconsistency across different screens and teams, inefficiency from rebuilding the same components repeatedly, and insecurity about which patterns were the right ones to use.</p>
     <p>The system gave the wider team a shared language and a single source of truth, making it possible to move faster without sacrificing quality.</p>
   </section>
 
-  <div class="img-full">
+  <div class="img-full scroll-reveal">
     <img src="Liverpool/design%20system%20pic.avif" alt="LFC App design system components">
   </div>
 
@@ -644,6 +654,19 @@
         document.getElementById('burger').classList.remove('open');
         document.getElementById('navLinks').classList.remove('open');
       });
+    });
+
+    // Scroll reveal
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.scroll-reveal').forEach(function(el) {
+      observer.observe(el);
     });
   </script>
 </body>

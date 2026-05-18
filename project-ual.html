@@ -296,6 +296,32 @@
     }
     .project-nav a:hover { color: var(--ink); }
 
+    /* --- Page entrance animations --- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    nav { opacity: 0; animation: fadeIn 500ms ease-out 100ms forwards; }
+    .project-hero { opacity: 0; animation: fadeIn 500ms ease-out 200ms forwards; }
+    .project-hero h1 { opacity: 0; animation: fadeUp 600ms ease-out 300ms forwards; }
+    .project-hero .subtitle { opacity: 0; animation: fadeUp 600ms ease-out 400ms forwards; }
+    .project-hero .project-meta-bar { opacity: 0; animation: fadeUp 600ms ease-out 500ms forwards; }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 600ms ease-out, transform 600ms ease-out;
+    }
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* --- Responsive --- */
     @media (max-width: 768px) {
       .nav-inner { padding: 14px 24px; }
@@ -406,36 +432,36 @@
   </div>
 
   <!-- Content -->
-  <section class="content">
+  <section class="content scroll-reveal">
     <h2>The Challenge</h2>
     <p>University of the Arts London is the world's second-ranked university for art and design, home to around 16,500 students across six colleges. Every year, thousands of graduates showcase their work in physical exhibitions. These shows are how they attract employers, build networks, and launch creative careers.</p>
     <p>When COVID-19 cancelled all physical shows, UAL needed a digital alternative that could serve 7,000 students across 290 courses. The platform had to be intuitive, scalable, and accessible to a global audience, and we had just three months to design and ship it.</p>
   </section>
 
-  <div class="project-img-full">
+  <div class="project-img-full scroll-reveal">
     <video autoplay muted loop playsinline>
       <source src="UAL%20project/UAL%20recording%201.mov" type="video/mp4">
     </video>
   </div>
 
-  <section class="content">
+  <section class="content scroll-reveal">
     <h2>Research &amp; Discovery</h2>
     <p>I worked within a cross-functional team of designers, cloud engineers, and DevSecOps specialists. We ran an IBM Innovation Jam, five Enterprise Design Thinking workshops, and 20 user interviews with students, faculty, and industry recruiters to understand what a meaningful digital showcase actually needed to be.</p>
     <p>A key insight from research was that students didn't just want a directory. They wanted a curated space that reflected the quality and identity of their college. The platform needed to unify work from all six colleges (Central Saint Martins, London College of Fashion, Chelsea, Camberwell, Wimbledon, and LCC) while letting each feel distinct.</p>
   </section>
 
-  <div class="project-img-full">
+  <div class="project-img-full scroll-reveal">
     <video autoplay muted loop playsinline>
       <source src="UAL%20project/UAL%20recording%202.mov" type="video/mp4">
     </video>
   </div>
 
-  <section class="content">
+  <section class="content scroll-reveal">
     <h2>Prototyping &amp; Testing</h2>
     <p>With physical studios closed, we adapted our process to work entirely remotely. We ran moderated usability sessions over Zoom with students and faculty, screen-sharing early prototypes and iterating in real time based on their feedback. This let us test ideas quickly without waiting for polished deliverables, and kept students involved as co-designers throughout.</p>
   </section>
 
-  <div class="project-img-row">
+  <div class="project-img-row scroll-reveal">
     <figure class="video-label">
       <video autoplay muted loop playsinline>
         <source src="UAL%20project/inital%20prototyping.mp4" type="video/mp4">
@@ -450,13 +476,13 @@
     </figure>
   </div>
 
-  <section class="content">
+  <section class="content scroll-reveal">
     <h2>Design Decisions</h2>
     <p>I designed the information architecture around browsing by college and discipline, with search as a secondary path. The goal was to recreate the serendipity of walking through a physical exhibition, where you stumble across work you weren't looking for. Collections and curated categories helped surface work thematically rather than just alphabetically.</p>
     <p>Each student got a profile page with control over how their work appeared: images, video, written statements, and external links. I kept the UI minimal so the creative work itself was the focus, using generous whitespace and a restrained type system that stayed out of the way.</p>
   </section>
 
-  <div class="project-img-row">
+  <div class="project-img-row scroll-reveal">
     <figure class="video-label">
       <div class="img-cropped">
         <img src="UAL%20project/Homepage.png" alt="UAL Showcase homepage design">
@@ -471,7 +497,7 @@
     </figure>
   </div>
 
-  <div class="project-img-row">
+  <div class="project-img-row scroll-reveal">
     <figure class="video-label">
       <video autoplay muted loop playsinline>
         <source src="UAL%20project/Mockup%20video%201.mov" type="video/mp4">
@@ -486,7 +512,7 @@
     </figure>
   </div>
 
-  <div class="project-img-full">
+  <div class="project-img-full scroll-reveal">
     <figure class="video-label">
       <video autoplay muted loop playsinline>
         <source src="UAL%20project/Mockup%20video%203.mov" type="video/mp4">
@@ -495,7 +521,7 @@
     </figure>
   </div>
 
-  <section class="content">
+  <section class="content scroll-reveal">
     <h2>Outcome</h2>
     <p>The platform launched on time and became UAL's first ever unified digital showcase across all six colleges. What started as a pandemic response became a permanent product. As Professor Roni Brown put it: <em>"This has excelled at creating a permanent living catalog of the very best of our student work."</em></p>
     <p>The showcase reached a global audience far beyond what physical exhibitions ever could, giving graduates visibility with employers and industry that a London-only event never offered. It's still live today and continues to be used for each new graduating cohort.</p>
@@ -548,6 +574,19 @@
         document.getElementById('burger').classList.remove('open');
         document.getElementById('navLinks').classList.remove('open');
       });
+    });
+
+    // Scroll reveal
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.scroll-reveal').forEach(function(el) {
+      observer.observe(el);
     });
   </script>
 </body>

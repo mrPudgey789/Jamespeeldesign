@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Umbrella - James Peel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Cooper Lt BT';
+      src: url('cooper-lt-bt/CooperLtBTLight.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cooper Lt BT';
+      src: url('cooper-lt-bt/CooperBoldBT.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #ffffff;
+      --ink: #121828;
+      --ink-muted: rgba(18,24,40,0.5);
+      --amazon-blue: #4AA5DC;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    /* --- Nav --- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      width: 100%;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 48px;
+    }
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+      filter: brightness(0);
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ink); }
+    .burger { display: none; }
+
+    /* --- Project Hero --- */
+    .project-hero {
+      background: var(--amazon-blue);
+      color: #ffffff;
+      padding: 80px 48px 100px;
+    }
+    .project-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .project-hero .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      margin-bottom: 40px;
+      transition: color 200ms ease;
+    }
+    .project-hero .back-link:hover { color: #ffffff; }
+    .project-hero h1 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.15;
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+    .project-hero .subtitle {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 600px;
+      opacity: 0.85;
+    }
+    .project-meta-bar {
+      display: flex;
+      gap: 48px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .meta-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+    .meta-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* --- Content --- */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+    .content h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      margin-top: 60px;
+    }
+    .content h2:first-child { margin-top: 0; }
+    .content h3 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      margin-top: 48px;
+    }
+    .content p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(18,24,40,0.8);
+      margin-bottom: 20px;
+    }
+    .content ul {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(18,24,40,0.8);
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+    .content li {
+      margin-bottom: 8px;
+    }
+    .content strong {
+      color: var(--ink);
+    }
+
+    /* --- Tenets --- */
+    .tenets {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 60px;
+    }
+    .tenets-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .tenet-card {
+      background: #EEF5FA;
+      border-radius: 12px;
+      padding: 32px;
+      border-left: 4px solid var(--amazon-blue);
+    }
+    .tenet-card h4 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+    .tenet-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(18,24,40,0.7);
+      margin: 0;
+    }
+
+    /* --- Images --- */
+    .project-img-full {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 48px;
+    }
+    .project-img-row {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .project-img-full img,
+    .project-img-row img {
+      width: 100%;
+      border-radius: 0;
+      display: block;
+    }
+    .project-img-full img.mockup,
+    .project-img-row img.mockup {
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    .project-img-full .img-placeholder,
+    .project-img-row .img-placeholder {
+      width: 100%;
+      height: 400px;
+      background: #f0f0f0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      border: 2px dashed rgba(18,24,40,0.15);
+    }
+    .project-img-row .img-placeholder {
+      height: 300px;
+    }
+    .img-caption {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    /* --- Outcomes --- */
+    .outcomes {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+    .outcomes h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .outcome-card {
+      background: #f8f8f8;
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+    }
+    .outcome-stat {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 2.4rem;
+      color: var(--amazon-blue);
+      margin-bottom: 8px;
+    }
+    .outcome-desc {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    /* --- Footer nav --- */
+    .project-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 48px;
+      border-top: 1px solid rgba(18,24,40,0.1);
+    }
+    .project-nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink-muted);
+      transition: color 200ms ease;
+    }
+    .project-nav a:hover { color: var(--ink); }
+
+    /* --- Page entrance animations --- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    nav { opacity: 0; animation: fadeIn 500ms ease-out 100ms forwards; }
+    .project-hero { opacity: 0; animation: fadeIn 500ms ease-out 200ms forwards; }
+    .project-hero h1 { opacity: 0; animation: fadeUp 600ms ease-out 300ms forwards; }
+    .project-hero .subtitle { opacity: 0; animation: fadeUp 600ms ease-out 400ms forwards; }
+    .project-hero .project-meta-bar { opacity: 0; animation: fadeUp 600ms ease-out 500ms forwards; }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 600ms ease-out, transform 600ms ease-out;
+    }
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .nav-inner { padding: 14px 24px; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        z-index: 200;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.4rem; }
+      .nav-logo img { height: 36px; }
+      .burger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 300;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+      .burger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition: transform 200ms ease, opacity 200ms ease;
+      }
+      .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .burger.open span:nth-child(2) { opacity: 0; }
+      .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .project-hero { padding: 48px 24px 60px; }
+      .project-hero h1 { font-size: 1.8rem; }
+      .project-meta-bar { gap: 24px; }
+
+      .content { padding: 48px 24px; }
+      .content h2 { font-size: 1.5rem; margin-top: 40px; }
+      .content h3 { font-size: 1.2rem; margin-top: 32px; }
+
+      .project-img-full { padding: 0 24px; }
+      .project-img-full .img-placeholder { height: 220px; }
+      .project-img-row { padding: 0 24px; grid-template-columns: 1fr; }
+      .project-img-row .img-placeholder { height: 220px; }
+
+      .tenets { padding: 0 24px 48px; }
+      .tenets-grid { grid-template-columns: 1fr; }
+
+      .outcomes { padding: 0 24px 48px; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+
+      .project-nav { padding: 32px 24px; flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="James%20logo%202%20black.svg" alt="James Peel">
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="work.html" class="active">Work</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="about.html">About</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="project-hero">
+    <div class="project-hero-inner">
+      <a href="work.html" class="back-link">&larr; All projects</a>
+      <h1>Umbrella: The Tool That Saved Amazon $250M</h1>
+      <p class="subtitle">A unified weather contingency platform that replaced fragmented regional systems, giving Amazon a single way to protect customer experience, employee safety, and transportation operations during severe weather events.</p>
+      <div class="project-meta-bar">
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">Amazon</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Solo Design Lead</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Timeline</span>
+          <span class="meta-value">2022 - 2024</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Scope</span>
+          <span class="meta-value">Global (NA, EU, APAC)</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Impact</span>
+          <span class="meta-value">$250M+ saved</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero image -->
+  <div class="project-img-full" style="margin-top: 60px;">
+    <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Homepage.png" alt="Umbrella Homepage" style="max-width: 800px; margin: 0 auto;">
+    <p class="img-caption">The Umbrella homepage: a single entry point for weather contingency across Amazon's global network.</p>
+  </div>
+
+  <!-- The Problem -->
+  <section class="content scroll-reveal">
+    <h2>The Problem</h2>
+    <p>One of Amazon's most critical KPIs is <strong>DEA (Delivery Estimate Accuracy)</strong> - the percentage of packages that arrive when customers are told they will. DEA directly drives customer trust. When a package is going to be late, the only way to protect DEA is to proactively update the customer's delivery estimate before the original promise expires. If you tell a customer their package will arrive Thursday and it arrives Friday, that's a DEA miss. If you update them on Wednesday that it's now arriving Friday, that's accurate.</p>
+    <p>Severe weather is one of the biggest threats to DEA. Storms, floods, hurricanes, and extreme heat events disrupt Amazon's transportation network across hundreds of thousands of routes. When weather hits, the only way to maintain DEA is to add time to delivery promises in affected areas - what Amazon calls a "promise pad." A pad extends the estimated delivery window so the promise still holds even if the shipment is delayed.</p>
+    <p>The challenge was that there was no single system to manage this. Each region had its own approach. North America used a tool called Tramontane. Europe used a separate weather contingency system. Both were siloed, manually intensive, and couldn't talk to each other. Senior leaders had no unified view of how weather was affecting their network, and frontline operators were spending hours manually placing pads on individual routes.</p>
+    <p>The result was reactive instead of proactive: teams scrambling to respond to weather events after they'd already started impacting DEA, with no consistent framework for deciding when and how to intervene.</p>
+  </section>
+
+  <div class="project-img-full scroll-reveal">
+    <img src="Amazon%20umbrella%20/What%20is%20a%20promise%20pad%20.png" alt="What is a promise pad - lifecycle">
+    <p class="img-caption">The promise pad lifecycle: how Amazon adjusts delivery promises to protect DEA during weather events.</p>
+  </div>
+
+  <section class="content scroll-reveal">
+    <h2>The Existing Landscape</h2>
+    <p>The first step was understanding what already existed. North America and Europe had built their own weather response systems independently, each with different mental models, different workflows, and different levels of automation.</p>
+    <p>The NA system was more mature in some areas but lacked the configurability that EU teams needed. The EU system had more flexibility but was harder to scale. Neither system could give senior leaders a clear picture of what was happening across regions, and neither could handle the growing complexity of Amazon's network.</p>
+  </section>
+
+  <div class="project-img-full scroll-reveal">
+    <img src="Amazon%20umbrella%20/two%20different%20soluations%20.png" alt="Two different solutions map">
+    <p class="img-caption">Two continents, two completely different approaches to the same problem.</p>
+  </div>
+
+  <!-- Research -->
+  <section class="content scroll-reveal">
+    <h2>Research</h2>
+    <p>I conducted extensive research across three distinct user groups to understand the full picture of how weather contingency worked at Amazon. Each group had fundamentally different needs and mental models.</p>
+  </section>
+
+  <div class="project-img-full scroll-reveal">
+    <img src="Amazon%20umbrella%20/Personas.png" alt="Three user personas" style="max-width: 700px; margin: 0 auto;">
+    <p class="img-caption">Three personas with fundamentally different needs: the System Configurator, the Senior Leader, and the Manual Overrider.</p>
+  </div>
+
+  <section class="content scroll-reveal">
+    <p><strong>System Configurators</strong> were the power users. They defined weather strategies, set thresholds, and configured how the system should respond to different types of events. They needed deep control and the ability to set rules that would scale across thousands of routes.</p>
+    <p><strong>Senior Leaders</strong> cared about one thing: is my network going to be adversely affected by weather? They needed visibility and reporting, not configuration. They wanted to see the status of their region at a glance and communicate that status upward.</p>
+    <p><strong>Manual Overriders</strong> were the frontline operators who needed to intervene when automation wasn't enough. A local weather event, a specific route that needed special treatment, a situation where the system's recommendation didn't match ground truth. They needed speed and precision.</p>
+  </section>
+
+  <!-- Key Insights -->
+  <section class="content scroll-reveal">
+    <h2>Key Insights</h2>
+    <ul>
+      <li><strong>Fragmentation was the core issue.</strong> The problem wasn't that existing tools were bad individually - it's that having separate systems for each region made it impossible to build a coherent global strategy or get a unified view of weather impact.</li>
+      <li><strong>Automation needed guardrails, not replacement.</strong> Operators didn't want full automation. They wanted the system to handle the 80% of routine decisions while giving them clear control over the 20% that required human judgement.</li>
+      <li><strong>Reporting was as important as action.</strong> Senior leaders spent significant time manually compiling weather impact reports. The tool needed to make reporting a byproduct of operation, not a separate task.</li>
+      <li><strong>Speed vs. accuracy trade-offs were constant.</strong> During a weather event, teams had to choose between protecting customer experience (adding delivery time) and maintaining speed promises. This trade-off needed to be explicit, not hidden.</li>
+    </ul>
+  </section>
+
+  <!-- North Star Design Tenets -->
+  <section class="content scroll-reveal">
+    <h2>North Star Design Tenets</h2>
+    <p>Based on the research, I established three design tenets that guided every decision throughout the project.</p>
+  </section>
+
+  <div class="tenets scroll-reveal">
+    <div class="tenets-grid">
+      <div class="tenet-card">
+        <h4>You only need 1 umbrella</h4>
+        <p>Umbrella will be the single solution for Amazon to manage global weather events that impact customer experience, employee safety, and transportation operations.</p>
+      </div>
+      <div class="tenet-card">
+        <h4>Umbrella should be low touch</h4>
+        <p>Teams only need to define a weather strategy goal (DEA/Speed trade-off) and Umbrella handles the computations and configurations needed to reach the goal.</p>
+      </div>
+      <div class="tenet-card">
+        <h4>Umbrella reports</h4>
+        <p>Senior leaders care if their network is going to be adversely affected by weather. Umbrella makes it easy to see network status by region and enables easy reporting of this information.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Process -->
+  <section class="content scroll-reveal">
+    <h2>Design Process</h2>
+    <p>As the solo design lead, I owned the end-to-end design process from research through to handoff. The design evolved through multiple rounds of iteration, working closely with engineering and product stakeholders across NA and EU.</p>
+    <p>I started with the information architecture: mapping out every workflow across both existing systems, identifying overlaps and gaps, and designing a unified structure that could accommodate both regions without forcing either to abandon their existing mental models entirely.</p>
+    <p>The key challenge was designing for three very different user types within a single interface. System Configurators needed depth. Senior Leaders needed breadth. Manual Overriders needed speed. The solution was a layered architecture where each user type could access the depth they needed without being overwhelmed by features they didn't.</p>
+  </section>
+
+  <div class="project-img-row scroll-reveal">
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Umbrella%20cockpit.png" alt="Umbrella cockpit dashboard">
+      <p class="img-caption">The cockpit: regional status at a glance for senior leaders.</p>
+    </div>
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Protections%20-%20map%20view.png" alt="Protections map view">
+      <p class="img-caption">Map view showing active protections across the network.</p>
+    </div>
+  </div>
+
+  <!-- The Solution -->
+  <section class="content scroll-reveal">
+    <h2>The Solution</h2>
+    <p>Umbrella was designed as a unified platform with four core surfaces, each serving a distinct purpose in the weather contingency workflow.</p>
+
+    <h3>The Cockpit</h3>
+    <p>A real-time dashboard showing weather event status across all regions. Senior leaders could see at a glance which areas were affected, what protections were active, and what the expected impact would be. This surface turned reporting from a manual task into a passive one.</p>
+
+    <h3>Protections Management</h3>
+    <p>The core operational surface where teams could view, manage, and override active protections. The map view gave spatial context, while list and facility views gave granular control. Operators could drill down from a region-level view to individual facility protections in two clicks.</p>
+  </section>
+
+  <div class="project-img-row scroll-reveal">
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Protections%20view%20pads.png" alt="Protections view with pads">
+      <p class="img-caption">Viewing active promise pads across facilities.</p>
+    </div>
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Protections%20-%20amazon%20facilities.png" alt="Amazon facilities view">
+      <p class="img-caption">Facility-level protection status.</p>
+    </div>
+  </div>
+
+  <section class="content scroll-reveal">
+    <h3>Promise Pad Workflows</h3>
+    <p>Adding and managing promise pads was the most frequent operator action. I designed a streamlined flow that reduced the steps needed to place a pad while maintaining the guardrails needed to prevent errors. Bulk upload capabilities meant teams could protect hundreds of routes in minutes rather than hours.</p>
+  </section>
+
+  <div class="project-img-row scroll-reveal">
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Add%20a%20pad.png" alt="Add a pad flow">
+      <p class="img-caption">The streamlined pad creation flow.</p>
+    </div>
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Bulk%20upload%20pads.png" alt="Bulk upload pads">
+      <p class="img-caption">Bulk upload for large-scale weather events.</p>
+    </div>
+  </div>
+
+  <div class="project-img-row scroll-reveal">
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/draw%20a%20pad%20location.png" alt="Draw a pad location on map">
+      <p class="img-caption">Drawing a pad location directly on the map.</p>
+    </div>
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Bulk%20upload%20review.png" alt="Bulk upload review">
+      <p class="img-caption">Reviewing bulk uploads before activation.</p>
+    </div>
+  </div>
+
+  <section class="content scroll-reveal">
+    <h3>Performance & Analytics</h3>
+    <p>The performance surface gave teams visibility into how promise pads were performing, volume share across regions, and deep-dive analytics into why specific pads were placed. This closed the feedback loop: teams could see the impact of their decisions and refine their weather strategies over time.</p>
+  </section>
+
+  <div class="project-img-row scroll-reveal">
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Performance%20page%20-%20promise%20pad.png" alt="Performance page - promise pad">
+      <p class="img-caption">Promise pad performance metrics and tracking.</p>
+    </div>
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Performence%20volume%20share.png" alt="Performance volume share">
+      <p class="img-caption">Volume share analysis across regions.</p>
+    </div>
+  </div>
+
+  <div class="project-img-row scroll-reveal">
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Why%20was%20this%20pad%20placed%20deepdive%201.png" alt="Pad placement deep dive">
+      <p class="img-caption">Deep-dive into why a specific pad was placed.</p>
+    </div>
+    <div>
+      <img class="mockup" src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Why%20was%20this%20pad%20placed%20deepdive%202.png" alt="Pad placement deep dive detail">
+      <p class="img-caption">Detailed breakdown of placement reasoning and impact.</p>
+    </div>
+  </div>
+
+  <!-- Handoff & Build -->
+  <section class="content scroll-reveal">
+    <h2>Handoff & Build</h2>
+    <p>Handoff was a continuous process rather than a single event. I worked embedded with engineering throughout, reviewing implementations against designs, adjusting specifications based on technical constraints, and maintaining a living design system that evolved with the build.</p>
+    <p>The global scope meant coordinating across time zones with engineering teams in North America and Europe. I created detailed interaction specifications and edge case documentation that allowed teams to build independently while maintaining consistency across the platform.</p>
+  </section>
+
+  <!-- Results -->
+  <section class="outcomes scroll-reveal">
+    <h2>Results</h2>
+    <p style="max-width: 800px; margin: 0 auto 32px; text-align: center; font-size: 1.05rem; line-height: 1.7; color: rgba(18,24,40,0.8);">Umbrella replaced the fragmented landscape of regional weather tools with a single, unified platform. It gave senior leaders the visibility they'd been manually compiling, gave operators the speed and control they needed during critical weather events, and gave Amazon a consistent framework for managing weather contingency at global scale.</p>
+    <p style="max-width: 800px; margin: 0 auto 40px; text-align: center; font-size: 1.05rem; line-height: 1.7; color: rgba(18,24,40,0.8);">The project demonstrated that the most impactful design work isn't always about novel interaction patterns. It's about understanding complex operational workflows deeply enough to unify them without losing what made each approach valuable in the first place.</p>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-stat">$250M+</div>
+        <div class="outcome-desc">Estimated savings from improved weather contingency management</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat">3 Regions</div>
+        <div class="outcome-desc">Unified NA, EU, and APAC under a single platform</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat">1 Tool</div>
+        <div class="outcome-desc">Replaced multiple fragmented regional systems</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Nav -->
+  <div class="project-nav">
+    <a href="work.html">&larr; All projects</a>
+    <a href="project-lfc.html">Next: Liverpool FC &rarr;</a>
+  </div>
+
+  <script>
+    document.getElementById('burger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.getElementById('burger').classList.remove('open');
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+
+    // Scroll reveal
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.scroll-reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
