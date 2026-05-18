@@ -853,8 +853,8 @@
       videos[dir].addEventListener('ended', returnToIdle);
     });
 
-    // Click on video area to play wave animation
-    document.querySelector('.video-wrap').addEventListener('click', () => {
+    // Click/tap on video area to play wave animation
+    function playWave() {
       if (currentVid === 'wave') return;
       if (vidPlaying) {
         vidQueued = null; // cancel any queued directional
@@ -879,6 +879,13 @@
       } else {
         wav.addEventListener('canplay', doSwap, { once: true });
       }
+    }
+
+    const videoWrap = document.querySelector('.video-wrap');
+    videoWrap.addEventListener('click', playWave);
+    videoWrap.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      playWave();
     });
 
     function triggerZone(zone) {
