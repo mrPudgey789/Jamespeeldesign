@@ -156,10 +156,17 @@
       bottom: 0;
       background: var(--bg);
       z-index: 9999;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 32px;
     }
     .enter-gate.visible { display: flex; }
+    .enter-logo {
+      height: 48px;
+      width: auto;
+      filter: brightness(0);
+    }
     .enter-btn {
       font-family: 'Cooper Lt BT', serif;
       font-weight: 300;
@@ -540,9 +547,12 @@
     <video id="vid-right" src="James%20look%20right%202.mp4" muted playsinline></video>
     <video id="vid-up" src="James%20look%20up%202.mp4" muted playsinline></video>
     <video id="vid-wave" src="wave.mp4" muted playsinline></video>
-    <div class="enter-gate" id="enterGate">
-      <button class="enter-btn" id="enterBtn">Enter site</button>
-    </div>
+  </div>
+
+  <!-- Enter gate (only shown when iOS Low Power Mode blocks autoplay) -->
+  <div class="enter-gate" id="enterGate">
+    <img src="James%20logo%202%20black.svg" alt="James Peel" class="enter-logo">
+    <button class="enter-btn" id="enterBtn">Enter site</button>
   </div>
 
   <!-- Typewriter text (fixed bottom) -->
