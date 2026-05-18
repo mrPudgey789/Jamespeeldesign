@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greene King - James Peel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Cooper Lt BT';
+      src: url('cooper-lt-bt/CooperLtBTLight.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cooper Lt BT';
+      src: url('cooper-lt-bt/CooperBoldBT.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #ffffff;
+      --ink: #121828;
+      --ink-muted: rgba(18,24,40,0.5);
+      --gk-green: #0F2E18;
+      --gk-green-light: #1A4D28;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* --- Nav --- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 36px;
+      background: var(--bg);
+      border-bottom: 1px solid rgba(18,24,40,0.08);
+    }
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+      filter: brightness(0);
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ink); }
+
+    /* --- Project Hero --- */
+    .project-hero {
+      background: var(--gk-green);
+      color: #ffffff;
+      padding: 80px 48px 100px;
+    }
+    .project-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      margin-bottom: 40px;
+      transition: color 200ms ease;
+    }
+    .back-link:hover { color: #ffffff; }
+    .project-hero h1 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.15;
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+    .project-hero .subtitle {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 600px;
+      opacity: 0.85;
+    }
+    .project-meta-bar {
+      display: flex;
+      gap: 48px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .meta-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+    .meta-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* --- Content --- */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+    .content h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      margin-top: 60px;
+    }
+    .content h2:first-child { margin-top: 0; }
+    .content p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(18,24,40,0.8);
+      margin-bottom: 20px;
+    }
+    .content .highlight {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* --- Full-width image --- */
+    .img-full {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 48px;
+    }
+    .img-full img {
+      width: 100%;
+    }
+
+    /* --- Image row (2 cols) --- */
+    .img-row {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 48px;
+      display: grid;
+      gap: 24px;
+    }
+    .img-row--2 { grid-template-columns: 1fr 1fr; }
+    .img-row img {
+      width: 100%;
+    }
+
+    /* --- Phone mockup (centered pair) --- */
+    .phone-mockup-section {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 0 48px;
+    }
+    .phone-mockup-section img {
+      width: 100%;
+    }
+
+    /* --- Opportunity statement --- */
+    .opportunity {
+      background: var(--gk-green);
+      padding: 80px 48px;
+      text-align: center;
+    }
+    .opportunity-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .opportunity .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+    .opportunity h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: #ffffff;
+      line-height: 1.3;
+    }
+    .opportunity h2 em {
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* --- Stat callout row --- */
+    .stat-row {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .stat-card {
+      text-align: center;
+      padding: 32px 24px;
+      border-radius: 12px;
+      background: #f8f8f8;
+    }
+    .stat-number {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 2.4rem;
+      color: var(--gk-green);
+      margin-bottom: 8px;
+    }
+    .stat-desc {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    /* --- Quotes section --- */
+    .quotes-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 48px 60px;
+    }
+    .quotes-section h3 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.4rem;
+      margin-bottom: 28px;
+    }
+    .quote-card {
+      background: #f8f8f8;
+      border-left: 3px solid var(--gk-green);
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+    }
+    .quote-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(18,24,40,0.8);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+    .quote-author {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+
+    /* --- Insight cards --- */
+    .insights-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .insight-card {
+      background: #f8f8f8;
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .insight-card .insight-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gk-green);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .insight-card .insight-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
+    .insight-card h4 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+    .insight-card p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--ink-muted);
+    }
+
+    /* --- Content with image side-by-side --- */
+    .content-with-image {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 48px;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+    .content-side {
+      flex: 1 1 55%;
+    }
+    .content-side h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    .content-side p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(18,24,40,0.8);
+      margin-bottom: 16px;
+    }
+    .image-side {
+      flex: 0 0 220px;
+    }
+    .image-side img {
+      width: 100%;
+      border-radius: 32px;
+    }
+
+    /* --- Outcomes --- */
+    .outcomes {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 48px 80px;
+    }
+    .outcomes h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .outcome-card {
+      background: #f8f8f8;
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+    }
+    .outcome-stat {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 2.4rem;
+      color: var(--gk-green);
+      margin-bottom: 8px;
+    }
+    .outcome-desc {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    /* --- Project nav footer --- */
+    .project-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 48px;
+      border-top: 1px solid rgba(18,24,40,0.1);
+    }
+    .project-nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink-muted);
+      transition: color 200ms ease;
+    }
+    .project-nav a:hover { color: var(--ink); }
+
+    /* --- Animations --- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    nav { opacity: 0; animation: fadeIn 500ms ease-out 100ms forwards; }
+    .project-hero-inner { opacity: 0; animation: fadeUp 600ms ease-out 200ms forwards; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 600ms ease-out, transform 600ms ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      nav { padding: 14px 18px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 0.9rem; }
+      .nav-logo img { height: 36px; }
+
+      .project-hero { padding: 48px 24px 60px; }
+      .project-hero h1 { font-size: 1.8rem; }
+      .project-meta-bar { gap: 24px; }
+
+      .content { padding: 48px 24px; }
+      .content h2 { font-size: 1.5rem; margin-top: 40px; }
+
+      .img-full { padding: 0 24px; }
+      .img-row { padding: 0 24px; }
+      .img-row--2 { grid-template-columns: 1fr; }
+
+      .phone-mockup-section { padding: 0 24px; }
+
+      .opportunity { padding: 48px 24px; }
+
+      .stat-row {
+        padding: 40px 24px;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .quotes-section { padding: 0 24px 40px; }
+      .quote-card { padding: 20px 22px; }
+
+      .insights-grid {
+        padding: 0 24px 40px;
+        grid-template-columns: 1fr;
+      }
+
+      .content-with-image {
+        flex-direction: column;
+        padding: 48px 24px;
+        gap: 32px;
+      }
+      .image-side { flex: none; width: 100%; }
+
+      .outcomes { padding: 40px 24px 48px; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+
+      .project-nav { padding: 32px 24px; flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="James%20logo%202%20black.svg" alt="James Peel">
+    </a>
+    <div class="nav-links">
+      <a href="work.html" class="active">Work</a>
+      <a href="experiments.html">Experiments</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="project-hero">
+    <div class="project-hero-inner">
+      <a href="work.html" class="back-link">&larr; All projects</a>
+      <h1>Optimising the Booking &amp; Enquiry Journey for 1,700 Pubs</h1>
+      <p class="subtitle">Founded in 1799, Greene King is the UK's leading pub retailer and brewer, welcoming customers to over 1,700 pubs, restaurants and hotels. Bookings are a primary revenue source, generating around &pound;200M+ per annum.</p>
+      <div class="project-meta-bar">
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">Cognizant</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Lead Product Designer</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Timeline</span>
+          <span class="meta-value">Jan - Jun 2023</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Platform</span>
+          <span class="meta-value">Responsive Web</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cover image -->
+  <div class="img-full reveal" style="margin-top: 60px;">
+    <img src="Greene%20king%20/65f997a6195eef95bc23dc1d_Greene%20Kingfinal-min-p-1600.png" alt="Greene King booking redesign — two phones showing the new enquiry and booking experience">
+  </div>
+
+  <!-- The Challenge -->
+  <section class="content reveal">
+    <h2>The Challenge</h2>
+    <p>A priority item on the Greene King roadmap was to <span class="highlight">"Improve the Enquiry Journey"</span>. Since the enquiry journey is so interlinked with the booking journey, the overall opportunity we worked on was:</p>
+  </section>
+
+  <!-- Opportunity statement -->
+  <div class="opportunity reveal">
+    <div class="opportunity-inner">
+      <div class="label">Design opportunity</div>
+      <h2>How might we optimise the <em>booking &amp; enquiry journey</em>?</h2>
+    </div>
+  </div>
+
+  <!-- The existing experience -->
+  <section class="content reveal">
+    <h2>The Existing Experience</h2>
+    <p>The existing booking flow lacked structure. Customers couldn't see what a venue area looked like, managers had no way of knowing the occasion type, and 90% of customers skipped the only free-text field designed to capture special requirements.</p>
+  </section>
+
+  <div class="img-full reveal">
+    <img src="Greene%20king%20/Group%201522.png" alt="The existing Greene King booking flow — time selection, contact details, and booking summary">
+  </div>
+
+  <!-- Research -->
+  <section class="content reveal">
+    <h2>Research &amp; Discovery</h2>
+    <p>We spoke to 11 customers and 6 General Managers across Greene King venues. Three themes emerged consistently.</p>
+  </section>
+
+  <!-- Insight cards -->
+  <div class="insights-grid reveal">
+    <div class="insight-card">
+      <div class="insight-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      </div>
+      <h4>Imagery &amp; venue 'vibe'</h4>
+      <p>Customers need to feel the vibe of a venue. Imagery and meaningful descriptions are crucial for confident booking decisions.</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+      </div>
+      <h4>Understanding the occasion</h4>
+      <p>4 out of 6 GMs said occasion type is critical — it determines what additional questions they need to ask and how they prepare.</p>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+      </div>
+      <h4>Rules &amp; dietary needs</h4>
+      <p>GMs manually send "do's and don'ts" before bookings. Customers with dietary needs can't easily verify options ahead of time.</p>
+    </div>
+  </div>
+
+  <!-- Quotes — curated selection -->
+  <div class="quotes-section reveal">
+    <h3>What we heard</h3>
+    <div class="quote-card">
+      <p class="quote-text">"Often it's unclear what the customer is actually trying to book. 90% of customers miss the 'special requests' field — and that's our only way of understanding what type of event it is."</p>
+      <span class="quote-author">Niko, Assistant Manager</span>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text">"'Old Skittle Alley' was no use at all as an area description. And 'main bar area' wasn't really the main eating area."</p>
+      <span class="quote-author">Kylie, 40 — Customer</span>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text">"How absolutely amazing would it be if a customer sends an enquiry, they get a template to fill to explain exactly what kind of party is it."</p>
+      <span class="quote-author">Emmy, General Manager</span>
+    </div>
+  </div>
+
+  <!-- Journey mapping -->
+  <section class="content reveal">
+    <h2>Mapping the Journey</h2>
+    <p>We mapped the full "Book a Space" and "Book a Table" flows end-to-end to identify where information was being lost and where friction was creating unnecessary follow-up calls.</p>
+  </section>
+
+  <div class="img-full reveal">
+    <img src="Greene%20king%20/Rectangle%20276.png" alt="User journey maps showing Book a Space and Book a Table flows">
+  </div>
+
+  <!-- Design & solution -->
+  <div class="content-with-image reveal">
+    <div class="content-side">
+      <h2>The Redesigned Experience</h2>
+      <p>The new journey captures occasion type, party size, and special requirements upfront — reducing follow-up calls. Venue areas are enriched with real imagery so customers can feel the vibe before committing, and a structured enquiry template gives managers exactly what they need to prepare.</p>
+    </div>
+    <div class="image-side">
+      <img src="Greene%20king%20/65f9a20c96c44939ca18287b_gif%20for%20gk%20final.gif" alt="Animated walkthrough of the redesigned Greene King booking flow">
+    </div>
+  </div>
+
+  <!-- Final screens -->
+  <div class="img-full reveal">
+    <img src="Greene%20king%20/Frame%2013853.png" alt="Final booking and enquiry screens showing the complete redesigned experience">
+  </div>
+
+  <!-- Results -->
+  <section class="outcomes reveal">
+    <h2>Results</h2>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-stat">+35%</div>
+        <div class="outcome-desc">Increase in enquiry form completion rate</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat">-40%</div>
+        <div class="outcome-desc">Reduction in follow-up calls from General Managers to customers</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat">1,700</div>
+        <div class="outcome-desc">Pubs rolling out the redesigned booking &amp; enquiry experience</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Nav -->
+  <div class="project-nav">
+    <a href="work.html">&larr; All projects</a>
+    <a href="project-ual.html">Next: UAL Graduate Showcase &rarr;</a>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

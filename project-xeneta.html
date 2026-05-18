@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redesigning How the World Prices Ocean Freight - James Peel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Cooper Lt BT';
+      src: url('cooper-lt-bt/CooperLtBTLight.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cooper Lt BT';
+      src: url('cooper-lt-bt/CooperBoldBT.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #ffffff;
+      --ink: #121828;
+      --ink-muted: rgba(18,24,40,0.5);
+      --xeneta-dark: #1B2A4A;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    /* --- Nav --- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 48px;
+      background: var(--bg);
+    }
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+      filter: brightness(0);
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ink); }
+    .burger { display: none; }
+
+    /* --- Project Hero --- */
+    .project-hero {
+      background: var(--xeneta-dark);
+      color: #ffffff;
+      padding: 80px 48px 100px;
+    }
+    .project-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .project-hero .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      margin-bottom: 40px;
+      transition: color 200ms ease;
+    }
+    .project-hero .back-link:hover { color: #ffffff; }
+    .project-hero h1 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.15;
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+    .project-hero .subtitle {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 600px;
+      opacity: 0.85;
+    }
+    .project-meta-bar {
+      display: flex;
+      gap: 48px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .meta-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+    .meta-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* --- Content --- */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+    .content h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      margin-top: 60px;
+    }
+    .content h2:first-child { margin-top: 0; }
+    .content h3 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      margin-top: 48px;
+    }
+    .content p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(18,24,40,0.8);
+      margin-bottom: 20px;
+    }
+
+    /* --- Images --- */
+    .project-img-full {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 48px;
+    }
+    .project-img-row {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .project-img-full img,
+    .project-img-row img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+    .project-img-full .img-placeholder,
+    .project-img-row .img-placeholder {
+      width: 100%;
+      height: 400px;
+      background: #f0f0f0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      border: 2px dashed rgba(18,24,40,0.15);
+    }
+    .project-img-row .img-placeholder {
+      height: 300px;
+    }
+    .img-caption {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    /* --- Outcomes --- */
+    .outcomes {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+    .outcomes h2 {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .outcome-card {
+      background: #f8f8f8;
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+    }
+    .outcome-stat {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 2.4rem;
+      color: var(--xeneta-dark);
+      margin-bottom: 8px;
+    }
+    .outcome-desc {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    /* --- Footer nav --- */
+    .project-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 48px;
+      border-top: 1px solid rgba(18,24,40,0.1);
+    }
+    .project-nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink-muted);
+      transition: color 200ms ease;
+    }
+    .project-nav a:hover { color: var(--ink); }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      nav { padding: 14px 24px; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        z-index: 200;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.4rem; }
+      .nav-logo img { height: 36px; }
+      .burger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 300;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+      .burger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition: transform 200ms ease, opacity 200ms ease;
+      }
+      .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .burger.open span:nth-child(2) { opacity: 0; }
+      .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .project-hero { padding: 48px 24px 60px; }
+      .project-hero h1 { font-size: 1.8rem; }
+      .project-meta-bar { gap: 24px; }
+
+      .content { padding: 48px 24px; }
+      .content h2 { font-size: 1.5rem; margin-top: 40px; }
+      .content h3 { font-size: 1.2rem; margin-top: 32px; }
+
+      .project-img-full { padding: 0 24px; }
+      .project-img-full .img-placeholder { height: 220px; }
+      .project-img-row { padding: 0 24px; grid-template-columns: 1fr; }
+      .project-img-row .img-placeholder { height: 220px; }
+
+      .outcomes { padding: 0 24px 48px; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+
+      .project-nav { padding: 32px 24px; flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="James%20logo%202%20black.svg" alt="James Peel">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="work.html" class="active">Work</a>
+      <a href="experiments.html">Experiments</a>
+      <a href="about.html">About</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <div class="project-hero">
+    <div class="project-hero-inner">
+      <a href="work.html" class="back-link">&larr; All projects</a>
+      <h1>Redesigning How the World Prices Ocean Freight</h1>
+      <p class="subtitle">Ocean freight contracts break when markets move. I led design on the simulator and contract manager Xeneta uses to fix that, helping turn indexing from a concept into a core part of the platform.</p>
+      <div class="project-meta-bar">
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">Xeneta</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Senior Product Designer (lead)</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Timeline</span>
+          <span class="meta-value">2024 - Present</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Surfaces</span>
+          <span class="meta-value">Simulator, Contract Manager</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Recognition</span>
+          <span class="meta-value">Ship Technology Award, UX Nordic finalist</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero image placeholder -->
+  <div class="project-img-full" style="margin-top: 60px;">
+    <div class="img-placeholder">Add hero image: Simulator V2 on dark navy, or product walkthrough video</div>
+  </div>
+
+  <!-- The Challenge -->
+  <section class="content">
+    <h2>The Challenge</h2>
+    <p>The ocean freight industry runs on twelve-month fixed-rate contracts that take four to six months to negotiate. When markets shift, those contracts stop working. During Covid, rates spiked over 600%. During the Red Sea crisis, over 400%. Either the shipper overpays or the carrier rolls the cargo and the supply chain breaks.</p>
+    <p>Index-linked contracts solve this by tying rates to a market index, so pricing moves with the market instead of being locked in at the wrong moment. The mechanism is well established in finance, construction, and real estate. Ocean freight is catching up.</p>
+    <p>Xeneta's bet was that this is where the market is heading. The product question was whether design could make a complex commercial mechanism understandable and trustworthy enough that customers would actually use it.</p>
+  </section>
+
+  <div class="project-img-full">
+    <div class="img-placeholder">Add image: Index-linked vs fixed-rate contract chart</div>
+    <p class="img-caption">Index-linked contracts move with the market. Fixed-rate contracts often don't.</p>
+  </div>
+
+  <!-- Research & Discovery -->
+  <section class="content">
+    <h2>Research &amp; Discovery</h2>
+    <p>I worked across two connected products. The Simulator is the entry point, where customers model how an index-linked contract would have performed historically. The Contract Manager is where those contracts run once they are live, with automatic rate adjustments and an audit trail.</p>
+    <p>Discovery ran in parallel with Customer Success Managers, who spend the most time explaining indexing to customers, and with freight forwarders, who use the Simulator to validate the approach internally and in supplier negotiations. We also analysed sixty-plus live index-linked contracts already in market to understand which parameters customers were actually using and where the existing contracts were breaking.</p>
+    <p>A consistent insight surfaced early: customers do not want indexing simplified. They want it made navigable. The decisions inside an index-linked contract are commercial judgement calls, and customers wanted to feel ownership of those calls rather than have the product make them invisible.</p>
+  </section>
+
+  <div class="project-img-full">
+    <div class="img-placeholder">Add image: Index Readiness Assessment panel or customer co-creation session</div>
+    <p class="img-caption">Discovery shifted the framing from a single volatility score to a broader readiness assessment covering volatility, coverage, data quality, and volume.</p>
+  </div>
+
+  <!-- Design Decisions -->
+  <section class="content">
+    <h2>Design Decisions</h2>
+
+    <h3>Configuration is the user's job</h3>
+    <p>There was internal pressure to use generative AI to produce contract rules from a natural language prompt. The premise was that this would speed up the user.</p>
+    <p>I pushed back. Index-linked contract rules are commercial judgement, not configuration. A contract owner choosing a 50% discount on a backhaul corridor is making a call about margin tolerance, supplier relationships, and market outlook. If an AI generates that for them, they cannot defend it to a customer or explain it to their CFO with confidence. The deliberate process of configuring each parameter is what builds the trust the rest of the product depends on.</p>
+    <p>Where intelligent assistance does add value is after configuration, showing the user how their rules would have performed historically and where rates would have crossed a floor. That reinforces understanding rather than bypassing it.</p>
+  </section>
+
+  <div class="project-img-row">
+    <div>
+      <div class="img-placeholder">Add image: Rule configuration screen</div>
+    </div>
+    <div>
+      <div class="img-placeholder">Add image: Historical performance view</div>
+    </div>
+  </div>
+  <div class="project-img-full" style="margin-top: -40px; margin-bottom: 60px;">
+    <p class="img-caption">The user configures. The system shows them what their choices mean.</p>
+  </div>
+
+  <section class="content">
+    <h3>Honest language for an uncertain system</h3>
+    <p>When Xeneta ingests a rate from a customer upload, it has to link that rate to a parent contract in the Contract Manager. The original design used status labels that implied certainty the system did not have. "Matched" suggested a confirmed link. "No match" was shown even when multiple potential candidates existed.</p>
+    <p>The matching system actually returns confidence levels, not binary outcomes. The available parameters (origin, destination, equipment type) are not enough to guarantee a true match. I rebuilt the table around the user's decision rather than the system's verdict.</p>
+    <p>The five real states became: <strong>Linked</strong> (user has confirmed), <strong>Review</strong> (one candidate found, verify it), <strong>Choose</strong> (multiple candidates, pick one), <strong>No candidates</strong> (create a new contract instead), and <strong>Create new</strong> as an action available from any unlinked state.</p>
+    <p>This work also drove a scope decision. Self-serve matching was pulled from V1 because the parameters were not yet strong enough to support it at scale. The redesign made the limitation visible rather than papering over it.</p>
+  </section>
+
+  <div class="project-img-full">
+    <div class="img-placeholder">Add image: Before/after of the linking table with old vs new labels</div>
+    <p class="img-caption">Labels that reflect what the system actually knows.</p>
+  </div>
+
+  <section class="content">
+    <h3>Progressive disclosure under commercial pressure</h3>
+    <p>Backhaul and low-volume corridors create a specific failure mode in index-linked contracts. When the index drops to extreme lows, percentage-based adjustments produce rates that no longer cover terminal handling. The contract works mathematically and fails commercially.</p>
+    <p>The fix is a threshold mechanism that automatically switches the calculation from percentage-based to dollar-based when the index crosses a defined floor, and reverts when it recovers. Easy to describe. Hard to expose in a setup flow that already asks the user to configure trade lanes, indices, adjustment schedules, calculation methods, and rate guardrails.</p>
+    <p>Three decisions shaped the result. One global rule per trade lane group, not per lane, to keep the mental model simple at scale. Threshold configuration placed after trade lanes so the system can run detection first and surface a real signal rather than a theoretical setting. System recommendations advisory and collapsed by default, with corridor-level breakdown another layer down, so the user retains authority over the values.</p>
+  </section>
+
+  <div class="project-img-full">
+    <div class="img-placeholder">Add image: Threshold configuration section with detection alert and collapsed recommendation panel</div>
+    <p class="img-caption">The system surfaces a signal. The user makes the call.</p>
+  </div>
+
+  <section class="content">
+    <h3>Validation in the open</h3>
+    <p>The Simulator V2 was tested in a customer co-creation session with a major logistics provider, alongside parallel input from CSMs working directly with shippers and forwarders. The portfolio-level savings breakdown and the estimated RFQ time-saving metric in the bottom panel came directly from that work.</p>
+    <p>I built functional prototypes in code rather than relying on static mockups for stakeholder reviews. It meant decisions landed faster, customers could interact with the work in sessions instead of imagining it, and engineering had something concrete to align against. Several scope decisions came from understanding the engineering reality early enough to design around it rather than into it.</p>
+  </section>
+
+  <div class="project-img-full">
+    <div class="img-placeholder">Add image: Customer session still or internal demo deck</div>
+    <p class="img-caption">Functional prototypes meant customers could interact with the work, not imagine it.</p>
+  </div>
+
+  <!-- Outcome -->
+  <section class="content">
+    <h2>Outcome</h2>
+    <p>The Simulator launched and now shows sustained engagement across the actions that matter: simulations started, portfolios created, rules saved, and exports generated. Strongest usage comes from freight forwarders, who use it to model index-linked contracts and explain them to their own customers.</p>
+    <p>The indexing work contributed to a Ship Technology Excellence Award and a UX Nordic Awards finalist submission. Indexing is now positioned as core infrastructure within Xeneta's product strategy, with the 2026 roadmap extending the Simulator into futures and derivatives so customers can hedge their index-linked contracts as well as model them.</p>
+    <p>The work that started as a niche commercial experiment has become one of the platform's strategic surfaces. The product question was whether design could make this mechanism trustworthy enough for customers to adopt. The usage data and the customer response say it did.</p>
+  </section>
+
+  <!-- Results -->
+  <section class="outcomes">
+    <h2>Results</h2>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-stat">60+</div>
+        <div class="outcome-desc">Live index-linked contracts analysed in discovery</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat">Award</div>
+        <div class="outcome-desc">Ship Technology Excellence Award</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-stat">Finalist</div>
+        <div class="outcome-desc">UX Nordic Awards</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Nav -->
+  <div class="project-nav">
+    <a href="work.html">&larr; All projects</a>
+    <a href="project-lfc.html">Next: Liverpool FC &rarr;</a>
+  </div>
+
+  <script>
+    document.getElementById('burger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.getElementById('burger').classList.remove('open');
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
