@@ -147,26 +147,34 @@
     .video-wrap video::-webkit-media-controls-start-playback-button { display: none !important; }
     .video-wrap video::-webkit-media-controls-panel { display: none !important; }
 
-    .preloader {
+    .enter-gate {
       display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .enter-gate.visible { display: flex; }
+    .enter-btn {
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1.2rem;
+      color: var(--ink);
+      background: none;
+      border: 1.5px solid var(--ink);
+      border-radius: 8px;
+      padding: 14px 40px;
       cursor: pointer;
+      transition: background 200ms ease, color 200ms ease;
     }
-    .preloader.visible { display: flex; }
-    .preloader-spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid rgba(27,42,74,0.15);
-      border-top-color: var(--ink);
-      border-radius: 50%;
-      animation: spin 800ms linear infinite;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .enter-btn:hover {
+      background: var(--ink);
+      color: var(--bg);
     }
 
     /* --- Typewriter hero statement --- */
@@ -532,8 +540,8 @@
     <video id="vid-right" src="James%20look%20right%202.mp4" muted playsinline></video>
     <video id="vid-up" src="James%20look%20up%202.mp4" muted playsinline></video>
     <video id="vid-wave" src="wave.mp4" muted playsinline></video>
-    <div class="preloader" id="preloader">
-      <div class="preloader-spinner"></div>
+    <div class="enter-gate" id="enterGate">
+      <button class="enter-btn" id="enterBtn">Enter site</button>
     </div>
   </div>
 
@@ -819,27 +827,20 @@
       wave:  document.getElementById('vid-wave'),
     };
 
-    // Force autoplay on mobile (iOS fallback)
-    // iOS Low Power Mode blocks autoplay — show fake preloader as tap-to-play
+    // iOS Low Power Mode blocks autoplay — show "Enter site" gate
     var idleVid = videos.idle;
-    var preloader = document.getElementById('preloader');
+    var enterGate = document.getElementById('enterGate');
+    var enterBtn = document.getElementById('enterBtn');
     var playPromise = idleVid.play();
     if (playPromise !== undefined) {
       playPromise.then(function() {
-        // Autoplay worked, hide preloader if visible
-        preloader.classList.remove('visible');
+        enterGate.classList.remove('visible');
       }).catch(function() {
-        // Autoplay blocked — show preloader spinner as disguised tap-to-play
-        preloader.classList.add('visible');
-        function forcePlay() {
-          idleVid.play().then(function() {
-            preloader.classList.remove('visible');
-          });
-          document.removeEventListener('touchstart', forcePlay);
-          document.removeEventListener('click', forcePlay);
-        }
-        document.addEventListener('touchstart', forcePlay);
-        document.addEventListener('click', forcePlay);
+        enterGate.classList.add('visible');
+        enterBtn.addEventListener('click', function() {
+          idleVid.play();
+          enterGate.classList.remove('visible');
+        });
       });
     }
 
