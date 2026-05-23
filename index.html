@@ -1004,6 +1004,13 @@
         }
       });
     }
+    // Reset opacity when navigating back via browser history
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) {
+        document.body.style.transition = 'none';
+        document.body.style.opacity = '1';
+      }
+    });
     // Page transition — fade out when navigating to Work
     document.querySelectorAll('.nav-label').forEach((link) => {
       link.addEventListener('click', (e) => {
