@@ -401,6 +401,16 @@
       75% { transform: translateX(6px); }
     }
     .password-gate.hidden { display: none; }
+    .password-gate .back-link {
+      display: inline-block;
+      margin-top: 24px;
+      font-family: 'Cooper Lt BT', serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--ink-muted);
+      transition: color 200ms ease;
+    }
+    .password-gate .back-link:hover { color: var(--ink); }
   </style>
 </head>
 <body>
@@ -414,6 +424,7 @@
       <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off">
       <button type="submit" id="passwordSubmit">Enter</button>
     </form>
+    <a href="/work" class="back-link">&larr; Back to all projects</a>
   </div>
 
   <!-- Nav -->
