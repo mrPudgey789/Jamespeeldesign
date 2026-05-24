@@ -401,12 +401,53 @@
       75% { transform: translateX(6px); }
     }
     .password-gate.hidden { display: none; }
-    .password-gate .back-link {
-      display: inline-block;
-      margin-top: 24px;
+    .password-gate .divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(18,24,40,0.15);
+      margin: 8px 0;
+    }
+    .password-gate .alt-text {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+    }
+    .password-gate .next-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: #f5f7fa;
+      border-radius: 12px;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+      max-width: 400px;
+      width: 100%;
+    }
+    .password-gate .next-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .password-gate .next-card-color {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: #4AA5DC;
+      flex-shrink: 0;
+    }
+    .password-gate .next-card-info h3 {
       font-family: 'Cooper Lt BT', serif;
       font-weight: 300;
-      font-size: 1rem;
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .password-gate .next-card-info span {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .password-gate .back-link {
+      font-size: 0.85rem;
       color: var(--ink-muted);
       transition: color 200ms ease;
     }
@@ -424,6 +465,15 @@
       <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off">
       <button type="submit" id="passwordSubmit">Enter</button>
     </form>
+    <div class="divider"></div>
+    <p class="alt-text">Or check out another project</p>
+    <a href="/project-amazon" class="next-card">
+      <div class="next-card-color"></div>
+      <div class="next-card-info">
+        <h3>Umbrella: The Tool That Saved Amazon $250M</h3>
+        <span>Amazon &middot; 2024</span>
+      </div>
+    </a>
     <a href="/work" class="back-link">&larr; Back to all projects</a>
   </div>
 

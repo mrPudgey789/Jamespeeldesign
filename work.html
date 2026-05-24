@@ -178,6 +178,25 @@
       letter-spacing: 0.05em;
     }
 
+    .lock-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .lock-pill .lock-icon {
+      font-size: 0.6rem;
+    }
+
     .project-image {
       flex: 1;
       position: relative;
@@ -429,6 +448,7 @@
 
     <a href="/project-xeneta" class="project-card card--xeneta">
       <div class="project-info">
+        <div class="lock-pill"><span class="lock-icon">&#128274;</span> Password required</div>
         <h2>Redesigning How a $2 Trillion Industry Buys Ocean Freight</h2>
         <div><img class="project-badge" src="Work%20projects%20/badge.png" alt="Ship Technology Excellence Award 2025"><img class="project-badge" src="Work%20projects%20/nordic.png" alt="Nordic Finalist"></div>
         <div class="project-meta">
