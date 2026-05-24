@@ -115,6 +115,10 @@
       object-fit: cover;
       border: 4px solid #ffffff;
       box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+      transition: transform 300ms ease;
+    }
+    .profile-pic img:hover {
+      transform: rotate(3deg);
     }
 
     /* --- Content sections --- */
@@ -317,7 +321,7 @@
     }
     .polaroid:hover {
       box-shadow: 0 16px 40px rgba(0,0,0,0.2);
-      transform: rotate(0deg) scale(1.15);
+      transform: rotate(0deg) scale(1.1);
       z-index: 100;
     }
     .polaroid.dragging {
