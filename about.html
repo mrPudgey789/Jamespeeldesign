@@ -311,11 +311,15 @@
       transform: rotate(var(--rot));
       cursor: grab;
       user-select: none;
-      transition: box-shadow 200ms ease;
+      transition: box-shadow 300ms ease, transform 300ms ease, z-index 0ms;
       z-index: 10;
       text-decoration: none;
     }
-    .polaroid:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.16); }
+    .polaroid:hover {
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+      transform: rotate(0deg) scale(1.15);
+      z-index: 100;
+    }
     .polaroid.dragging {
       cursor: grabbing;
       box-shadow: 0 16px 48px rgba(0,0,0,0.22);
