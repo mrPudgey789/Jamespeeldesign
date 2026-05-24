@@ -345,8 +345,10 @@
       gap: 24px;
     }
     .password-gate .lock-icon {
-      font-size: 2.5rem;
-      opacity: 0.3;
+      width: 32px;
+      height: 32px;
+      fill: var(--ink);
+      opacity: 0.2;
     }
     .password-gate h2 {
       font-family: 'Cooper Lt BT', serif;
@@ -413,38 +415,58 @@
     }
     .password-gate .next-card {
       display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px 20px;
-      background: #f5f7fa;
       border-radius: 12px;
-      transition: transform 200ms ease, box-shadow 200ms ease;
-      max-width: 400px;
+      overflow: hidden;
+      max-width: 440px;
       width: 100%;
+      background: #4AA5DC;
+      text-decoration: none;
+      transition: transform 300ms ease, box-shadow 300ms ease;
+      min-height: 140px;
     }
     .password-gate .next-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transform: scale(1.03);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
     }
-    .password-gate .next-card-color {
-      width: 48px;
-      height: 48px;
-      border-radius: 8px;
-      background: #4AA5DC;
-      flex-shrink: 0;
+    .password-gate .next-card-info {
+      flex: 0 0 55%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #ffffff;
     }
     .password-gate .next-card-info h3 {
       font-family: 'Cooper Lt BT', serif;
       font-weight: 300;
-      font-size: 0.95rem;
-      color: var(--ink);
+      font-size: 1.05rem;
       line-height: 1.3;
+      color: #ffffff;
     }
     .password-gate .next-card-info span {
-      font-size: 0.75rem;
-      color: var(--ink-muted);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-top: 12px;
+    }
+    .password-gate .next-card-img {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .password-gate .next-card-img img {
+      width: 90%;
+      object-fit: cover;
+      transform: rotate(3deg);
+      margin-right: -10px;
+      margin-top: 10px;
+      border-radius: 4px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
     .password-gate .back-link {
       font-size: 0.85rem;
@@ -458,7 +480,7 @@
 
   <!-- Password gate -->
   <div class="password-gate" id="passwordGate">
-    <div class="lock-icon">&#128274;</div>
+    <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 10h-1V7A5 5 0 0 0 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2ZM9 7a3 3 0 0 1 6 0v3H9Z"/></svg>
     <h2>Protected project</h2>
     <p>This case study is subject to NDA. Please contact me for the password.</p>
     <form id="passwordForm" onsubmit="return false;">
@@ -468,10 +490,12 @@
     <div class="divider"></div>
     <p class="alt-text">Or check out another project</p>
     <a href="/project-amazon" class="next-card">
-      <div class="next-card-color"></div>
       <div class="next-card-info">
         <h3>Umbrella: The Tool That Saved Amazon $250M</h3>
         <span>Amazon &middot; 2024</span>
+      </div>
+      <div class="next-card-img">
+        <img src="Amazon%20umbrella%20/UI%20designs%20final%20version/%F0%9F%92%BB%20_/Umbrella%20cockpit.png" alt="Amazon Umbrella">
       </div>
     </a>
     <a href="/work" class="back-link">&larr; Back to all projects</a>
