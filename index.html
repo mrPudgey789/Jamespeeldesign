@@ -333,10 +333,22 @@
       color: var(--ink);
       transition: color 300ms ease;
       line-height: 1;
+      display: flex;
+      align-items: center;
     }
+    .nav-label .nav-line .arrow svg {
+      stroke: var(--ink);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 300ms ease;
+    }
+    .nav-label:hover .nav-line .arrow svg { stroke: #ffffff; }
     .nav-label:hover .nav-title { color: #ffffff; }
     .nav-label:hover .nav-line .line { width: 70px; background: #ffffff; }
     .nav-label:hover .nav-line .arrow { color: #ffffff; }
+
 
     /* --- Left --- */
     .nav-label--left {
@@ -518,7 +530,7 @@
     <span class="nav-title">Work</span>
     <span class="nav-sub">Xeneta &middot; Amazon &middot; IBM &middot; Cognizant</span>
     <span class="nav-line">
-      <span class="arrow">&larr;</span>
+      <span class="arrow"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M12 7H2M2 7L6 3M2 7L6 11"/></svg></span>
       <span class="line"></span>
     </span>
   </a>
@@ -528,7 +540,7 @@
     <span class="nav-sub">Fun stuff on the side</span>
     <span class="nav-line">
       <span class="line"></span>
-      <span class="arrow">&rarr;</span>
+      <span class="arrow"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 7H12M12 7L8 3M12 7L8 11"/></svg></span>
     </span>
   </a>
 
@@ -536,7 +548,7 @@
     <span class="nav-title">About</span>
     <span class="nav-sub">Learn about who I am</span>
     <span class="nav-line">
-      <span class="arrow">&uarr;</span>
+      <span class="arrow"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 12V2M7 2L3 6M7 2L11 6"/></svg></span>
       <span class="line"></span>
     </span>
   </a>
