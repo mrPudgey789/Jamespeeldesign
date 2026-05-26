@@ -554,6 +554,26 @@
         document.getElementById('navLinks').classList.remove('open');
       });
     });
+
+    // Autoplay recovery: if browser blocks autoplay, play on first interaction
+    (function() {
+      var vid = document.querySelector('.hero-video video');
+      if (!vid) return;
+      var p = vid.play();
+      if (p !== undefined) {
+        p.catch(function() {
+          function playOnce() {
+            vid.play();
+            document.removeEventListener('click', playOnce);
+            document.removeEventListener('scroll', playOnce);
+            document.removeEventListener('touchstart', playOnce);
+          }
+          document.addEventListener('click', playOnce, { once: true });
+          document.addEventListener('scroll', playOnce, { once: true });
+          document.addEventListener('touchstart', playOnce, { once: true });
+        });
+      }
+    })();
   </script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
