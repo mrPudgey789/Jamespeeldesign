@@ -150,6 +150,26 @@
       margin-bottom: 20px;
     }
 
+    /* --- Claude logo inline --- */
+    .claude-inline {
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      text-decoration: none;
+    }
+    .claude-logo-inline {
+      height: 1.3em;
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+      transition: transform 400ms ease, filter 300ms ease;
+      margin: 0 2px;
+    }
+    .claude-logo-inline:hover {
+      transform: scale(1.15) rotate(-3deg);
+      filter: drop-shadow(0 4px 12px rgba(211, 139, 94, 0.4));
+    }
+
     /* --- Career Journey --- */
     .career-section {
       max-width: 1200px;
@@ -535,7 +555,7 @@
       <div class="polaroid-img"><img src="about%20photos/future%20product%20days.jpeg" alt="Future Product Days conference"></div>
       <span class="polaroid-caption">Future Product Days<br>@Xeneta, 2025</span>
     </a>
-    <a class="polaroid content-polaroid" style="--rot: 2deg; top: 320px;" data-content-polaroid href="https://www.linkedin.com/in/james-peel/" target="_blank">
+    <a class="polaroid content-polaroid" style="--rot: 2deg; top: 420px;" data-content-polaroid href="https://www.linkedin.com/in/james-peel/" target="_blank">
       <div class="polaroid-img"><img src="new%20photos/Workshops%20and%20talks/London%20tech%20week.jpeg" alt="London Tech Week"></div>
       <span class="polaroid-caption">London Tech Week<br>@Cognizant, 2023</span>
     </a>
@@ -543,6 +563,11 @@
     <p>I'm most useful when I'm close to the problem. I like to understand the full picture before opening Figma: the business goals, the technical constraints, the user's actual behaviour. I prototype early, test often, and push for simplicity wherever possible.</p>
     <p>I'm trained in IBM Enterprise Design Thinking, which shaped how I run workshops, align stakeholders, and frame problems around user outcomes. From my time at Amazon, I also adopted a Working Backwards approach: document-driven, starting from the customer and working back to the solution. PRFAQs, 6-pagers, and narrative docs before wireframes. It means the thinking is pressure-tested before a pixel gets placed.</p>
     <p>I've worked as the first designer on engineering-led teams, as a consultant parachuted into complex client environments, and as a design lead shaping product strategy. The common thread is turning messy, complex domains into experiences that feel obvious in hindsight.</p>
+
+    <h2>Design Builder</h2>
+    <p>I think of myself as a design builder now. Figma is still central to my process, but the way I work has fundamentally changed. I use <a href="https://claude.ai" target="_blank" class="claude-inline"><img src="Claude_AI_logo.svg.png" alt="Claude" class="claude-logo-inline"></a> as my daily partner — not just for ideation or copy, but to build, prototype, and ship real products end to end.</p>
+    <p>The portfolio you're looking at right now was designed and built entirely with Claude. My side project <a href="/experiments" style="text-decoration: underline; text-underline-offset: 3px;">AuraMarket</a> — a full-stack Next.js app with real-time data, trading mechanics, and authentication — was built the same way. I can go from concept to production without waiting for a handoff.</p>
+    <p>The future of product design isn't just knowing how to push pixels — it's knowing how to think in systems, write clear prompts, and build what you design. That's where I sit.</p>
 
     <h2>Talks &amp; Community</h2>
     <p>I regularly attend and speak at design conferences and events. My work at Xeneta was nominated at Future Product Days 2025 and won the Ship Technology Excellence Award. I've attended GOV.UK Design System Day, London Tech Week, and run internal AI workshops to help teams explore how design and AI intersect.</p>
